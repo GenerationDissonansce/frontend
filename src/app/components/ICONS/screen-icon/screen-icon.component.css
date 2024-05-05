@@ -1,0 +1,37 @@
+.icon-container {
+  width:           calc(var(--screen-icon-size) - 2px);
+  height:          calc(var(--screen-icon-size) - 2px);
+  position:        absolute;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  align-content:   center;
+  justify-content: flex-start;
+  padding:         5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition-property: background-color, opacity, border-color;
+  transition-duration: var(--fast-transition-time);
+}
+
+.icon-container:hover {
+  background-color: var(--hover-icon-bg);
+}
+
+.icon-img {
+  height: calc(var(--screen-icon-size) - var(--screen-icon-text-height) - 12px);
+}
+
+.icon-text {
+  height: var(--screen-icon-text-height);
+}
+
+.chosen-icon {
+  background: var(--chosen-icon-bg) !important;
+  border-color: white;
+}
+
+.dragging {
+  opacity: .7;
+  background-color: var(--hover-icon-bg);
+}

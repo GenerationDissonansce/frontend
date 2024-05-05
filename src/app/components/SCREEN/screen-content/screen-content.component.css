@@ -1,8 +1,9 @@
 .screen-container {
-  width:    var(--screen-width);
-  height:   calc(var(--screen-height) - var(--top-bar-height));
-  position: relative;
+  width:      var(--screen-width);
+  height:     calc(var(--screen-height) - var(--top-bar-height));
+  position:   relative;
 }
+
 .background-img {
   width:    var(--screen-width);
   height:   calc(var(--screen-height) - var(--top-bar-height));
@@ -10,4 +11,3 @@
   top:      0;
   left:     0;
 }
-

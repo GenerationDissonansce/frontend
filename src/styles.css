@@ -47,10 +47,12 @@ input, button, select {
 }
 
 img {
-  -moz-user-select:    none;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
   -webkit-user-select: none;
-  user-select:         none;
-  pointer-events:      none;
+  -ms-user-select: none;
 }
 
 /* LITTLE CLASSES */
@@ -76,6 +78,8 @@ img {
   --screen-outer-before-color-bottom: #bfbfbf;
   --screen-outer-before-color-right:  #e6e6e6;
   --screen-outer-before-color-left:   #cccccc;
+  --hover-icon-bg:                    #00000030;
+  --chosen-icon-bg:                   rgba(239, 64, 0, 0.4);
 }
 
 :root { /* sizes */
@@ -87,6 +91,8 @@ img {
   --screen-outer-corner-radius: 8px;
   --screen-outer-padding:       20px;
   --top-bar-height: 25px;
+  --screen-icon-size: 65px;
+  --screen-icon-text-height: 9px;
 }
 
 :root { /* transition duration times */

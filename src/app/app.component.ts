@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {ScreenComponent} from "./components/SCREEN/screen/screen.component";
+import {ScreenSizeService} from "./services/screen-size.service";
 
 @Component({
   selector: 'app-root',
@@ -12,22 +13,24 @@ import {ScreenComponent} from "./components/SCREEN/screen/screen.component";
 export class AppComponent implements OnInit {
   title = 'GenerationalDissonance';
 
+  constructor(
+    public screen_size_service: ScreenSizeService,
+  ) {
+  }
+
   ngOnInit() {
     this.CalculateSizes();
   }
 
   CalculateSizes() {
-    var height = Math.min(768, Math.max(480, window.innerHeight - 168));
-    var width = Math.min(1024, Math.max(640, window.innerWidth - 168));
-
-    if (width * 3 < height * 4) height = width / 4 * 3;
-    else width = height / 3 * 4;
-
-    let top_bar_height = 25 * height / 768;
-    console.log(top_bar_height);
+    var height = this.screen_size_service.height;
+    var width = this.screen_size_service.width;
+    var top_bar_height = 25 * height / 768;
+    var icon_size = this.screen_size_service.icon_size;
 
     document.documentElement.style.setProperty('--screen-width', `${width}px`);
     document.documentElement.style.setProperty('--screen-height', `${height}px`);
     document.documentElement.style.setProperty('--top-bar-height', `${top_bar_height}px`);
+    document.documentElement.style.setProperty('--screen-icon-size', `${icon_size}px`);
   }
 }

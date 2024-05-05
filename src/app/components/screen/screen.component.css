@@ -1,0 +1,10 @@
+.screen-container {
+  width:          var(--screen-width);
+  height:         var(--screen-height);
+  overflow:       hidden;
+  border-radius:  var(--screen-outer-corner-radius);
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  align-content:  center;
+}

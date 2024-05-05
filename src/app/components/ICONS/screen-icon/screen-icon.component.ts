@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {ScreenIconsService} from "../../../services/screen-icons.service";
 import {ScreenIconModel} from "../../../models/screen-icon.model";
 import {MouseFollowerIconService} from "../../../services/mouse-follower-icon.service";

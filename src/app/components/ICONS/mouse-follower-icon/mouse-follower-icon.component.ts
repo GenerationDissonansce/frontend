@@ -51,7 +51,7 @@ export class MouseFollowerIconComponent implements AfterViewInit {
       this.icon_container.nativeElement.style.top = `${y}px`;
       this.icon_container.nativeElement.style.left = `${x}px`;
     };
-    let mouseupListener = (e: any) => {
+    let mouseupListener = () => {
       const containerPos = document.getElementById('screen-container')!.getBoundingClientRect();
       const rect = this.icon_container.nativeElement.getBoundingClientRect();
       const result_rect: {top: number, left: number, right: number, bottom: number} = {

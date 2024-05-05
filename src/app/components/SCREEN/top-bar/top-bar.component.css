@@ -1,0 +1,5 @@
+.top-bar-container {
+  width: var(--screen-width);
+  height: var(--top-bar-height);
+  background: white;
+}

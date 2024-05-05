@@ -72,20 +72,21 @@ img {
 :root[theme="dark"] { /* colors[dark-theme] */
   --gray:                             #898989;
   --screen-outer-main-color:          #d9d9d9;
-  --screen-outer-before-color-top:    #F2F2F2;
-  --screen-outer-before-color-bottom: #BFBFBF;
-  --screen-outer-before-color-right:   #E6E6E6;
-  --screen-outer-before-color-left:  #CCCCCC;
+  --screen-outer-before-color-top:    #f2f2f2;
+  --screen-outer-before-color-bottom: #bfbfbf;
+  --screen-outer-before-color-right:  #e6e6e6;
+  --screen-outer-before-color-left:   #cccccc;
 }
 
 :root { /* sizes */
-  --screen-width:  1024px;
-  --screen-height: 768px;
-  --screen-outer-main-size: 60px;
-  --screen-outer-before-size: 4px;
-  --screen-outer-after-size: 8px;
+  --screen-width:               1024px;
+  --screen-height:              768px;
+  --screen-outer-main-size:     60px;
+  --screen-outer-before-size:   4px;
+  --screen-outer-after-size:    8px;
   --screen-outer-corner-radius: 8px;
-  --screen-outer-padding: 20px;
+  --screen-outer-padding:       20px;
+  --top-bar-height: 25px;
 }
 
 :root { /* transition duration times */

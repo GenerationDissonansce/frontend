@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono');
+
+* {
+  line-height:                 100%;
+  box-sizing:                  border-box;
+  margin:                      0;
+  padding:                     0;
+  caret-color:                 transparent;
+  color:                       inherit;
+  -webkit-tap-highlight-color: transparent;
+  height:                      fit-content;
+}
+
+p {
+  margin:      0 !important;
+  padding:     0 !important;
+  font-family: var(--ff-ibm-mono);
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width:   0;
+}
+
+html, body {
+  width:           100vw;
+  scroll-behavior: smooth;
+  min-height:      100vh;
+  overflow-x:      hidden;
+  overflow-y:      hidden;
+}
+
+body {
+  background-color: var(--gray);
+  display:          flex;
+  flex-wrap:        wrap;
+  position:         relative;
+}
+
+li {
+  list-style-type: none;
+}
+
+input, button, select {
+  outline-offset: 0;
+  outline:        0;
+}
+
+img {
+  -moz-user-select:    none;
+  -webkit-user-select: none;
+  user-select:         none;
+  pointer-events:      none;
+}
+
+/* LITTLE CLASSES */
+
+.fw-700 { font-weight: 700; }
+
+.fw-600 { font-weight: 600; }
+
+.fw-500 { font-weight: 500; }
+
+/* VARIABLES */
+
+:root { /* fonts */
+  --ff-ibm-mono: "IBM Plex Mono", monospace;
+}
+
+:root[theme='light'] { /* colors[white-theme] */ }
+
+:root[theme="dark"] { /* colors[dark-theme] */
+  --gray:                             #898989;
+  --screen-outer-main-color:          #d9d9d9;
+  --screen-outer-before-color-top:    #F2F2F2;
+  --screen-outer-before-color-bottom: #BFBFBF;
+  --screen-outer-before-color-right:   #E6E6E6;
+  --screen-outer-before-color-left:  #CCCCCC;
+}
+
+:root { /* sizes */
+  --screen-width:  1024px;
+  --screen-height: 768px;
+  --screen-outer-main-size: 60px;
+  --screen-outer-before-size: 4px;
+  --screen-outer-after-size: 8px;
+  --screen-outer-corner-radius: 8px;
+  --screen-outer-padding: 20px;
+}
+
+:root { /* transition duration times */
+  --slow-transition-time: .6s;
+  --fast-transition-time: .3s;
+}

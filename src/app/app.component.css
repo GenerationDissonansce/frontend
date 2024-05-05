@@ -1,0 +1,44 @@
+.main-content {
+  width:           100vw;
+  height:          100vh;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  align-content:   center;
+  overflow:        scroll;
+}
+
+.screen-frame {
+  width:      fit-content;
+  height:     fit-content;
+  padding:    var(--screen-outer-padding);
+  background: black;
+  border:     var(--screen-outer-main-size) solid var(--screen-outer-main-color);
+  position:   relative;
+}
+
+.screen-frame:before {
+  content:        "";
+  position:       absolute;
+  top:            calc(-1 * (var(--screen-outer-main-size) + var(--screen-outer-before-size)));
+  left:           calc(-1 * (var(--screen-outer-main-size) + var(--screen-outer-before-size)));
+  right:          calc(-1 * (var(--screen-outer-main-size) + var(--screen-outer-before-size)));
+  bottom:         calc(-1 * (var(--screen-outer-main-size) + var(--screen-outer-before-size)));
+  border:         solid var(--screen-outer-before-size);
+  border-color:   var(--screen-outer-before-color-top) var(--screen-outer-before-color-left) var(--screen-outer-before-color-bottom) var(--screen-outer-before-color-right);
+  border-radius:  var(--screen-outer-corner-radius);
+  pointer-events: none;
+}
+
+.screen-frame:after {
+  content:        "";
+  position:       absolute;
+  top:            calc(-1 * var(--screen-outer-after-size));
+  left:           calc(-1 * var(--screen-outer-after-size));
+  right:          calc(-1 * var(--screen-outer-after-size));
+  bottom:         calc(-1 * var(--screen-outer-after-size));
+  border:         solid var(--screen-outer-after-size);
+  border-color:   var(--screen-outer-before-color-bottom) var(--screen-outer-before-color-right) var(--screen-outer-before-color-top) var(--screen-outer-before-color-left);
+  border-radius:  var(--screen-outer-corner-radius);
+  pointer-events: none;
+}

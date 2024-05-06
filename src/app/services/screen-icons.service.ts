@@ -69,9 +69,10 @@ export class ScreenIconsService {
 
   }
 
-  chooseIcon(id: number) {
+  chooseIcon(id?: number) {
     for (const screenIcon of this.screen_icons) screenIcon.is_chosen = false;
-    this.screen_icons[id].is_chosen = true;
+    if (id !== undefined)
+      this.screen_icons[id].is_chosen = true;
     this.emitData();
   }
 

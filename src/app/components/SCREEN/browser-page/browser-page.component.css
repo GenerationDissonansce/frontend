@@ -1,0 +1,26 @@
+.page-container {
+  position:            absolute;
+  display:             none;
+  flex-direction:      column;
+  transform:           scale(0);
+  transform-origin:    center;
+  min-width:           300px;
+  min-height:          100px;
+  width:               100px;
+  height:              100px;
+  background:          white;
+  top:                 100px;
+  left:                100px;
+  transition-property: transform;
+  transition-duration: var(--fast-transition-time);
+  resize:              both;
+  z-index:             100;
+  overflow:            auto;
+}
+
+.top-bar {
+  height: 25px;
+  width:  100%;
+  cursor: pointer;
+  background: gray;
+}

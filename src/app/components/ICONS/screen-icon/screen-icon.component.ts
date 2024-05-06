@@ -2,6 +2,8 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {ScreenIconsService} from "../../../services/screen-icons.service";
 import {ScreenIconModel} from "../../../models/screen-icon.model";
 import {MouseFollowerIconService} from "../../../services/mouse-follower-icon.service";
+import {BrowserPageComponent} from "../../SCREEN/browser-page/browser-page.component";
+import {BrowserService} from "../../../services/browser.service";
 
 @Component({
   selector: 'app-screen-icon',
@@ -18,6 +20,7 @@ export class ScreenIconComponent implements AfterViewInit {
   constructor(
     public screen_icons_service: ScreenIconsService,
     public mouse_follower: MouseFollowerIconService,
+    public browser: BrowserService,
   ) {
     this.subscribeToScreenIconsService();
   }
@@ -44,10 +47,15 @@ export class ScreenIconComponent implements AfterViewInit {
 
   addMoveListeners() {
     this.icon_container.nativeElement.addEventListener('mousedown', (e:any)=>{
-      this.screen_icons_service.chooseIcon(this.icon_id);
-
-      const pos = this.icon_container.nativeElement.getBoundingClientRect();
-      this.mouse_follower.setIconId(this.icon_id, e.clientX - pos.left, e.clientY - pos.top);
+      if (this.icon.is_chosen) {
+        this.browser.AddPage(this.icon);
+        this.screen_icons_service.chooseIcon(undefined);
+        this.mouse_follower.setIconId(undefined, 0, 0);
+      } else {
+        this.screen_icons_service.chooseIcon(this.icon_id);
+        const pos = this.icon_container.nativeElement.getBoundingClientRect();
+        this.mouse_follower.setIconId(this.icon_id, e.clientX - pos.left, e.clientY - pos.top);
+      }
     });
   }
 

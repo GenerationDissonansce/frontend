@@ -4,4 +4,8 @@
     <app-screen-icon [icon_id]="icon.id!"></app-screen-icon>
   }
   <app-mouse-follower-icon></app-mouse-follower-icon>
+
+  @for (page of pages; track pages) {
+    <app-browser-page class="app-browser-page" [page]="page" [style.z-index]="100+page.z_index!"></app-browser-page>
+  }
 </div>

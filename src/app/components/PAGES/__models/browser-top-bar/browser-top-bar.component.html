@@ -1,1 +1,26 @@
-<p>browser-top-bar works!</p>
+<div class="top-bar-container">
+  <div class="close">
+    <img class="close-icon-container" src="assets/browser/close-icon-container.svg">
+    <img (click)="Close()" class="close-icon" style="z-index: 305" src="assets/browser/close-icon.svg">
+  </div>
+  <div class="name">
+    <div class="background">
+      <div class="line" style="height: 1px; background: #9f9f9f;"></div>
+      <div class="line" style="height: 1px; background: #D6D6D6;"></div>
+      <div class="line" style="height: 1px; background: #ADADAD;"></div>
+      <div class="line" style="height: 1px; background: #D1D1D1;"></div>
+      <div class="line" style="height: 1px; background: #B3B3B3;"></div>
+      <div class="line" style="height: 1px; background: #C9C9C9;"></div>
+      <div class="line" style="height: 2px; background: #BFBFBF;"></div>
+      <div class="line" style="height: 1px; background: #C8C8C8;"></div>
+      <div class="line" style="height: 1px; background: #BBBBBB;"></div>
+      <div class="line" style="height: 1px; background: #A9A9AB;"></div>
+      <div class="line" style="height: 1px; background: #DADADA;"></div>
+      <div class="line" style="height: 1px; background: #C8C8C8;"></div>
+    </div>
+  </div>
+  <div class="full-screen">
+    <img (click)="FullScreen()" src="assets/browser/full-screen-icon.svg" style="z-index: 305">
+  </div>
+  <div class="name-text">{{page_name}}</div>
+</div>

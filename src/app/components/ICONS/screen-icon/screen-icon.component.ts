@@ -16,6 +16,8 @@ export class ScreenIconComponent implements AfterViewInit {
   @ViewChild('icon_container') public icon_container: any;
   @Input() icon_id!: number;
   public icon: ScreenIconModel = {};
+  public double_click: boolean = false;
+  public double_click_reset_time: number = 700;
 
   constructor(
     public screen_icons_service: ScreenIconsService,
@@ -47,11 +49,14 @@ export class ScreenIconComponent implements AfterViewInit {
 
   addMoveListeners() {
     this.icon_container.nativeElement.addEventListener('mousedown', (e:any)=>{
-      if (this.icon.is_chosen) {
+      if (this.icon.is_chosen && this.double_click) {
         this.browser.AddPage(this.icon);
         this.screen_icons_service.chooseIcon(undefined);
         this.mouse_follower.setIconId(undefined, 0, 0);
+        this.double_click = false;
       } else {
+        this.double_click = true;
+        setTimeout(()=>{this.double_click = false;}, this.double_click_reset_time);
         this.screen_icons_service.chooseIcon(this.icon_id);
         const pos = this.icon_container.nativeElement.getBoundingClientRect();
         this.mouse_follower.setIconId(this.icon_id, e.clientX - pos.left, e.clientY - pos.top);

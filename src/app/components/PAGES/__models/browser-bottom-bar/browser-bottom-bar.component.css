@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  height: 14px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 100%;
+  height: 14px;
+  position: relative;
+  background: #EFEFED;
+}
+
+.right {
+  width: 14px;
+  height: 14px;
+  position: relative;
+}
+
+.ver-line {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  top: 1px;
+}
+
+.hor-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  left: 0;
+}

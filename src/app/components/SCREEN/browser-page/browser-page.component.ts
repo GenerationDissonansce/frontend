@@ -2,18 +2,33 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {PageModel} from "../../../models/page.model";
 import {BrowserService} from "../../../services/browser.service";
 import {ScreenSizeService} from "../../../services/screen-size.service";
+import {BrowserScrollbarComponent} from "../../PAGES/__models/browser-scrollbar/browser-scrollbar.component";
+import {ServicePageComponent} from "../../PAGES/service-page/service-page.component";
+import {BrowserTopBarComponent} from "../../PAGES/__models/browser-top-bar/browser-top-bar.component";
+import {
+  BrowserAddressContainerComponent
+} from "../../PAGES/__models/browser-address-container/browser-address-container.component";
+import {BrowserBottomBarComponent} from "../../PAGES/__models/browser-bottom-bar/browser-bottom-bar.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-browser-page',
   standalone: true,
-  imports: [],
+  imports: [
+    BrowserScrollbarComponent,
+    ServicePageComponent,
+    BrowserTopBarComponent,
+    BrowserAddressContainerComponent,
+    BrowserBottomBarComponent,
+    NgIf
+  ],
   templateUrl: './browser-page.component.html',
   styleUrl: './browser-page.component.css'
 })
 export class BrowserPageComponent implements AfterViewInit {
   @ViewChild('page_container') public page_container: any;
   @ViewChild('top_bar') public top_bar: any;
-  @Input() public page: PageModel = {id:0};
+  @Input() public page: PageModel = {id: 0};
   is_sticking: boolean = false;
   minus_x: number = 0;
   minus_y: number = 0;
@@ -22,19 +37,26 @@ export class BrowserPageComponent implements AfterViewInit {
     private browser: BrowserService,
     private screen_size: ScreenSizeService,
   ) {
+    this.browser.subscribers$.subscribe(() => {
+      this.DefaultSize();
+    });
   }
 
   ngAfterViewInit() {
+    this.DefaultSize();
+    setTimeout(() => {
+      this.page_container.nativeElement.style.transform = 'scale(1)';
+    });
+
+    this.addListeners();
+  }
+
+  DefaultSize() {
     this.page_container.nativeElement.style.width = `${this.page.width}px`;
     this.page_container.nativeElement.style.height = `${this.page.height}px`;
     this.page_container.nativeElement.style.top = `${this.page.top}px`;
     this.page_container.nativeElement.style.left = `${this.page.left}px`;
     this.page_container.nativeElement.style.display = 'flex';
-    setTimeout(()=>{
-      this.page_container.nativeElement.style.transform = 'scale(1)';
-    });
-
-    this.addListeners();
   }
 
   ChoosePage() {
@@ -42,7 +64,7 @@ export class BrowserPageComponent implements AfterViewInit {
   }
 
   addListeners() {
-    let stick_page = (e:any) => {
+    let stick_page = (e: any) => {
       if (this.is_sticking) {
         const containerPos = document.getElementById('screen-container')!.getBoundingClientRect();
         const pagePos = this.page_container.nativeElement.getBoundingClientRect();
@@ -59,12 +81,12 @@ export class BrowserPageComponent implements AfterViewInit {
       removeEventListener('mouseup', mouse_up_listen);
     }
 
-    new ResizeObserver(()=>{
+    new ResizeObserver(() => {
       const size = this.page_container.nativeElement.getBoundingClientRect();
       this.browser.Resize(this.page.id, size.width, size.height);
     }).observe(this.page_container.nativeElement);
 
-    this.top_bar.nativeElement.addEventListener('mousedown', (e:any)=>{
+    this.top_bar.nativeElement.addEventListener('mousedown', (e: any) => {
       this.ChoosePage();
       this.is_sticking = true;
       this.minus_x = e.clientX - this.page_container.nativeElement.getBoundingClientRect().left;

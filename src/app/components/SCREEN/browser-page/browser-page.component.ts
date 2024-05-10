@@ -52,10 +52,18 @@ export class BrowserPageComponent implements AfterViewInit {
   }
 
   DefaultSize() {
-    this.page_container.nativeElement.style.width = `${this.page.width}px`;
-    this.page_container.nativeElement.style.height = `${this.page.height}px`;
-    this.page_container.nativeElement.style.top = `${this.page.top}px`;
-    this.page_container.nativeElement.style.left = `${this.page.left}px`;
+    if (this.page.is_full_screen) {
+      const containerPos = document.getElementById('screen-container')!.getBoundingClientRect();
+      this.page_container.nativeElement.style.width = `100%`;
+      this.page_container.nativeElement.style.height = `${containerPos.height}px`;
+      this.page_container.nativeElement.style.top = `0`;
+      this.page_container.nativeElement.style.left = `0`;
+    } else {
+      this.page_container.nativeElement.style.width = `${this.page.width}px`;
+      this.page_container.nativeElement.style.height = `${this.page.height}px`;
+      this.page_container.nativeElement.style.top = `${this.page.top}px`;
+      this.page_container.nativeElement.style.left = `${this.page.left}px`;
+    }
     this.page_container.nativeElement.style.display = 'flex';
   }
 
@@ -63,13 +71,20 @@ export class BrowserPageComponent implements AfterViewInit {
     this.browser.ChoosePage(this.page);
   }
 
+  ResizeListener(value: number[]) {
+    this.page.width = value[0];
+    this.page_container.nativeElement.style.width = `${this.page.width}px`;
+    this.page.height = value[1];
+    this.page_container.nativeElement.style.height = `${this.page.height}px`;
+  }
+
   addListeners() {
     let stick_page = (e: any) => {
       if (this.is_sticking) {
         const containerPos = document.getElementById('screen-container')!.getBoundingClientRect();
         const pagePos = this.page_container.nativeElement.getBoundingClientRect();
-        let top = Math.max(0, Math.min(e.clientY - this.minus_y - containerPos.top, this.screen_size.height - pagePos.height));
-        let left = Math.max(0, Math.min(e.clientX - this.minus_x - containerPos.left, this.screen_size.width - pagePos.width));
+        let top = Math.max(0, Math.min(e.clientY - this.minus_y - containerPos.top, containerPos.height - pagePos.height));
+        let left = Math.max(0, Math.min(e.clientX - this.minus_x - containerPos.left, containerPos.width - pagePos.width));
         this.page_container.nativeElement.style.top = `${top}px`;
         this.page_container.nativeElement.style.left = `${left}px`;
         this.browser.MovePage(top, left);
@@ -80,11 +95,6 @@ export class BrowserPageComponent implements AfterViewInit {
       removeEventListener('mousemove', stick_page);
       removeEventListener('mouseup', mouse_up_listen);
     }
-
-    new ResizeObserver(() => {
-      const size = this.page_container.nativeElement.getBoundingClientRect();
-      this.browser.Resize(this.page.id, size.width, size.height);
-    }).observe(this.page_container.nativeElement);
 
     this.top_bar.nativeElement.addEventListener('mousedown', (e: any) => {
       this.ChoosePage();

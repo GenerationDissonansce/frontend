@@ -18,7 +18,6 @@ export class BrowserService {
   }
 
   constructor(
-    private screen: ScreenSizeService,
   ) {
   }
 
@@ -32,7 +31,10 @@ export class BrowserService {
 
   AddPage(icon: ScreenIconModel) {
     if (this.pages.length >= this.max_pages_count) this.pages.shift();
-    for (const page of this.pages) page.z_index = 0;
+    for (let i = 0; i < this.pages.length; i++) {
+      this.pages[i].z_index = 0;
+      this.pages[i].id = i;
+    }
     let top: number = 10;
     let left: number = 10;
     while (true) {
@@ -48,7 +50,9 @@ export class BrowserService {
       top: top,
       left: left,
       width: 300,
+      height: 150,
       z_index: 1,
+      is_full_screen: false,
     }
     switch (icon.id) {
       case 0:
@@ -95,10 +99,8 @@ export class BrowserService {
   FullScreen(id: number) {
     for (let i = 0; i < this.pages.length; i++)
       if (this.pages[i].id === id) {
-        this.pages[i].top = 0;
-        this.pages[i].left = 0;
-        this.pages[i].width = this.screen.width;
-        this.pages[i].height = this.screen.height;
+        this.pages[i].is_full_screen = !this.pages[i].is_full_screen;
+        console.log(this.pages[i]);
         this.emitData();
         break;
       }

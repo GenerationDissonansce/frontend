@@ -6,4 +6,5 @@ export interface PageModel {
   width?: number;
   height?: number;
   z_index?: number;
+  is_full_screen?: boolean;
 }

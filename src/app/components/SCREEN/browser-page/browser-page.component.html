@@ -18,11 +18,13 @@
               <div class="content-container">
                 <app-browser-address-container *ngIf="page.name !== 'games'" [page_name]="page.name!"></app-browser-address-container>
                 <div class="content">
-                  <app-service-page></app-service-page>
-                  <app-browser-scrollbar></app-browser-scrollbar>
+                  <div class="page-content">
+                    <app-service-page></app-service-page>
+                  </div>
+                  <app-browser-scrollbar style="height: 100%;"></app-browser-scrollbar>
                 </div>
               </div>
-              <app-browser-bottom-bar></app-browser-bottom-bar>
+              <app-browser-bottom-bar (output_size)="ResizeListener($event)" [page]="page"></app-browser-bottom-bar>
             </div>
           </div>
         </div>

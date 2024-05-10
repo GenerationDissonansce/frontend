@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {ServiceService} from "../../../services/service.service";
-import {ScreenSizeService} from "../../../services/screen-size.service";
 import {PageModel} from "../../../models/page.model";
 import {UpdatePageService} from "../../../services/update-page.service";
 

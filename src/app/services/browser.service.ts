@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {PageModel} from "../models/page.model";
 import {ScreenIconModel} from "../models/screen-icon.model";
 import {Subject} from "rxjs";
-import {ScreenSizeService} from "./screen-size.service";
 
 @Injectable({
   providedIn: 'root'

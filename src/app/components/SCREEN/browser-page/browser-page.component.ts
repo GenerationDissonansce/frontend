@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {PageModel} from "../../../models/page.model";
 import {BrowserService} from "../../../services/browser.service";
-import {ScreenSizeService} from "../../../services/screen-size.service";
 import {BrowserScrollbarComponent} from "../../PAGES/__models/browser-scrollbar/browser-scrollbar.component";
 import {ServicePageComponent} from "../../PAGES/service-page/service-page.component";
 import {BrowserTopBarComponent} from "../../PAGES/__models/browser-top-bar/browser-top-bar.component";
@@ -45,8 +44,7 @@ export class BrowserPageComponent implements AfterViewInit {
     this.updatePageService.subscribers$.subscribe((e:any) => {
       const percent = e.percent;
       const height = this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height;
-      const top = height * percent;
-      this.scroll_container.nativeElement.scrollTop = top;
+      this.scroll_container.nativeElement.scrollTop = height * percent;
     })
   }
 

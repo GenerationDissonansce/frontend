@@ -100,7 +100,6 @@ export class BrowserService {
     for (let i = 0; i < this.pages.length; i++)
       if (this.pages[i].id === id) {
         this.pages[i].is_full_screen = !this.pages[i].is_full_screen;
-        console.log(this.pages[i]);
         this.emitData();
         break;
       }

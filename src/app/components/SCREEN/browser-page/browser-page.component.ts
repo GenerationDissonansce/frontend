@@ -10,6 +10,7 @@ import {
 } from "../../PAGES/__models/browser-address-container/browser-address-container.component";
 import {BrowserBottomBarComponent} from "../../PAGES/__models/browser-bottom-bar/browser-bottom-bar.component";
 import {NgIf} from "@angular/common";
+import {UpdatePageService} from "../../../services/update-page.service";
 
 @Component({
   selector: 'app-browser-page',
@@ -26,8 +27,9 @@ import {NgIf} from "@angular/common";
   styleUrl: './browser-page.component.css'
 })
 export class BrowserPageComponent implements AfterViewInit {
-  @ViewChild('page_container') public page_container: any;
-  @ViewChild('top_bar') public top_bar: any;
+  @ViewChild('page_container') page_container: any;
+  @ViewChild('scroll_container') scroll_container: any;
+  @ViewChild('top_bar') top_bar: any;
   @Input() public page: PageModel = {id: 0};
   is_sticking: boolean = false;
   minus_x: number = 0;
@@ -35,11 +37,17 @@ export class BrowserPageComponent implements AfterViewInit {
 
   constructor(
     private browser: BrowserService,
-    private screen_size: ScreenSizeService,
+    private updatePageService: UpdatePageService,
   ) {
-    this.browser.subscribers$.subscribe(() => {
+    this.browser.subscribers$.subscribe(()=>{
       this.DefaultSize();
     });
+    this.updatePageService.subscribers$.subscribe((e:any) => {
+      const percent = e.percent;
+      const height = this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height;
+      const top = height * percent;
+      this.scroll_container.nativeElement.scrollTop = top;
+    })
   }
 
   ngAfterViewInit() {
@@ -49,6 +57,13 @@ export class BrowserPageComponent implements AfterViewInit {
     });
 
     this.addListeners();
+  }
+
+  getPageContentHeight() {
+    if (this.page.is_full_screen)
+      return `calc(${this.page_container.nativeElement.getBoundingClientRect().height}px - 64px)`;
+    else
+      return `calc(${this.page.height}px - 64px)`;
   }
 
   DefaultSize() {
@@ -64,6 +79,7 @@ export class BrowserPageComponent implements AfterViewInit {
       this.page_container.nativeElement.style.top = `${this.page.top}px`;
       this.page_container.nativeElement.style.left = `${this.page.left}px`;
     }
+    this.updatePageService.ResizeEmitData([this.page.width!, this.page.height!, this.page.is_full_screen?1:0]);
     this.page_container.nativeElement.style.display = 'flex';
   }
 
@@ -76,6 +92,7 @@ export class BrowserPageComponent implements AfterViewInit {
     this.page_container.nativeElement.style.width = `${this.page.width}px`;
     this.page.height = value[1];
     this.page_container.nativeElement.style.height = `${this.page.height}px`;
+    this.updatePageService.ResizeEmitData(value);
   }
 
   addListeners() {
@@ -95,6 +112,10 @@ export class BrowserPageComponent implements AfterViewInit {
       removeEventListener('mousemove', stick_page);
       removeEventListener('mouseup', mouse_up_listen);
     }
+    let scroll_listener = () => {
+      let percent = Math.min(1, this.scroll_container.nativeElement.scrollTop / (this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height));
+      this.updatePageService.ScrollBarEmitData(percent);
+    }
 
     this.top_bar.nativeElement.addEventListener('mousedown', (e: any) => {
       this.ChoosePage();
@@ -103,6 +124,7 @@ export class BrowserPageComponent implements AfterViewInit {
       this.minus_y = e.clientY - this.page_container.nativeElement.getBoundingClientRect().top;
       addEventListener('mousemove', stick_page);
       addEventListener('mouseup', mouse_up_listen);
-    })
+    });
+    this.scroll_container.nativeElement.addEventListener('scroll', scroll_listener);
   }
 }

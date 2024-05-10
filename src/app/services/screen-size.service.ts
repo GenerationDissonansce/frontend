@@ -16,6 +16,5 @@ export class ScreenSizeService {
     else this.width = this.height / 3 * 4;
 
     this.icon_size = Math.min(65, 65 * this.height / 500);
-    console.log(this.height);
   }
 }

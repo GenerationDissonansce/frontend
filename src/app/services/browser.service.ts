@@ -35,7 +35,6 @@ export class BrowserService {
   }
 
   async AddPage(icon: ScreenIconModel) {
-
     if (this.pages.length >= this.max_pages_count) {
       this.updatePagesService.ClosePage(this.pages[0].id);
       await this.sleep(300);

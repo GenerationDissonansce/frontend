@@ -45,6 +45,10 @@ export class BrowserPageComponent implements AfterViewInit {
       const percent = e.percent;
       const height = this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height;
       this.scroll_container.nativeElement.scrollTop = height * percent;
+    });
+    this.updatePageService.close_pages_subscribers$.subscribe((e:any) => {
+      if (e.id === this.page.id)
+        this.page_container.nativeElement.style.transform = 'scale(0)';
     })
   }
 

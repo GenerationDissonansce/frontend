@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {PageModel} from "../models/page.model";
 import {ScreenIconModel} from "../models/screen-icon.model";
 import {Subject} from "rxjs";
+import {UpdatePageService} from "./update-page.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class BrowserService {
   }
 
   constructor(
+    private updatePagesService: UpdatePageService,
   ) {
   }
 
@@ -28,8 +30,17 @@ export class BrowserService {
     this.emitData();
   }
 
-  AddPage(icon: ScreenIconModel) {
-    if (this.pages.length >= this.max_pages_count) this.pages.shift();
+  sleep (time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
+  async AddPage(icon: ScreenIconModel) {
+
+    if (this.pages.length >= this.max_pages_count) {
+      this.updatePagesService.ClosePage(this.pages[0].id);
+      await this.sleep(300);
+      this.pages.shift();
+    }
     for (let i = 0; i < this.pages.length; i++) {
       this.pages[i].z_index = 0;
       this.pages[i].id = i;
@@ -86,11 +97,16 @@ export class BrowserService {
     this.pages[this.pages.length - 1].left = left;
   }
 
-  Close(id: number) {
+  async Close(id: number) {
     let new_array = [];
-    for (let i = 0; i < this.pages.length; i++)
+    for (let i = 0; i < this.pages.length; i++) {
       if (this.pages[i].id !== id)
         new_array.push(this.pages[i]);
+      else {
+        this.updatePagesService.ClosePage(this.pages[i].id);
+      }
+    }
+    await this.sleep(300);
     this.pages = new_array;
     this.emitData();
   }

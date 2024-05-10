@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
-import {ServiceService} from "../../../services/service.service";
-import {PageModel} from "../../../models/page.model";
-import {UpdatePageService} from "../../../services/update-page.service";
+import {ServiceService} from "../../../../services/service.service";
+import {PageModel} from "../../../../models/page.model";
+import {UpdatePageService} from "../../../../services/update-page.service";
 
 @Component({
   selector: 'app-service-page',

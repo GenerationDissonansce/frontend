@@ -23,7 +23,20 @@
                 <app-browser-address-container *ngIf="page.name !== 'games'" [page_name]="page.name!"></app-browser-address-container>
                 <div class="content">
                   <div class="page-content" [style.height]="this.getPageContentHeight()" #scroll_container>
-                    <app-service-page [page]="page"></app-service-page>
+                    @switch (page.name) {
+                      @case ('service') {
+                        <app-service-page [page]="page"></app-service-page>
+                      }
+                      @case ('games') {
+                        <app-game-page [page]="page"></app-game-page>
+                      }
+                      @case ('about-us') {
+                        <app-about-us-page [page]="page"></app-about-us-page>
+                      }
+                      @default {
+                        <app-contact-page [page]="page"></app-contact-page>
+                      }
+                    }
                   </div>
                   <app-browser-scrollbar style="height: 100%;"></app-browser-scrollbar>
                 </div>

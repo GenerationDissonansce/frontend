@@ -1,5 +1,42 @@
 .top-bar-container {
-  width: var(--screen-width);
-  height: var(--top-bar-height);
-  background: white;
+  width:          var(--screen-width);
+  height:         var(--top-bar-height);
+  background:     white;
+  display:        flex;
+  flex-direction: row;
+}
+
+.logo {
+  height:  100%;
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.logo > img {
+  height: 110%;
+}
+
+.time {
+  height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-wrap:   nowrap;
+  white-space: nowrap;
+  word-break:  keep-all;
+  word-wrap: break-word;
+  margin-right: 20px;
+  padding: 1px;
+}
+
+.center {
+  width:       100%;
 }

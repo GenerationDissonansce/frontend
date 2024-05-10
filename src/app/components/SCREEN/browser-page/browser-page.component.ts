@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {PageModel} from "../../../models/page.model";
 import {BrowserService} from "../../../services/browser.service";
 import {BrowserScrollbarComponent} from "../../PAGES/__models/browser-scrollbar/browser-scrollbar.component";
-import {ServicePageComponent} from "../../PAGES/service-page/service-page.component";
+import {ServicePageComponent} from "../../PAGES/__contents/service-page/service-page.component";
 import {BrowserTopBarComponent} from "../../PAGES/__models/browser-top-bar/browser-top-bar.component";
 import {
   BrowserAddressContainerComponent
@@ -10,6 +10,9 @@ import {
 import {BrowserBottomBarComponent} from "../../PAGES/__models/browser-bottom-bar/browser-bottom-bar.component";
 import {NgIf} from "@angular/common";
 import {UpdatePageService} from "../../../services/update-page.service";
+import {GamePageComponent} from "../../PAGES/__contents/game-page/game-page.component";
+import {AboutUsPageComponent} from "../../PAGES/__contents/about-us-page/about-us-page.component";
+import {ContactPageComponent} from "../../PAGES/__contents/contact-page/contact-page.component";
 
 @Component({
   selector: 'app-browser-page',
@@ -20,7 +23,10 @@ import {UpdatePageService} from "../../../services/update-page.service";
     BrowserTopBarComponent,
     BrowserAddressContainerComponent,
     BrowserBottomBarComponent,
-    NgIf
+    NgIf,
+    GamePageComponent,
+    AboutUsPageComponent,
+    ContactPageComponent
   ],
   templateUrl: './browser-page.component.html',
   styleUrl: './browser-page.component.css'

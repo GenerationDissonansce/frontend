@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {UpdatePageService} from "../../../../services/update-page.service";
+import {PageModel} from "../../../../models/page.model";
 
 @Component({
   selector: 'app-browser-scrollbar',
@@ -11,16 +12,19 @@ import {UpdatePageService} from "../../../../services/update-page.service";
 export class BrowserScrollbarComponent implements AfterViewInit {
   @ViewChild('container') container: any;
   @ViewChild('icon') icon: any;
+  @Input() page!: PageModel;
   private minusy = 0;
 
   constructor(
     private updatePageService: UpdatePageService,
   ) {
     this.updatePageService.scrollbar_subscribers$.subscribe((e:any) => {
-      const percent = e.percent;
-      const height = this.container.nativeElement.getBoundingClientRect().height - this.icon.nativeElement.getBoundingClientRect().height;
-      const top = height * percent;
-      this.icon.nativeElement.style.top = `${top}px`;
+      if (e.pageId == this.page.id) {
+        const percent = e.percent;
+        const height = this.container.nativeElement.getBoundingClientRect().height - this.icon.nativeElement.getBoundingClientRect().height;
+        const top = height * percent;
+        this.icon.nativeElement.style.top = `${top}px`;
+      }
     })
   }
 
@@ -36,7 +40,7 @@ export class BrowserScrollbarComponent implements AfterViewInit {
       const top = Math.max(0, Math.min(y, height));
       const percent = Math.min(1, top / height);
       this.icon.nativeElement.style.top = `${top}px`;
-      this.updatePageService.ScrollEmitData(percent);
+      this.updatePageService.ScrollEmitData(percent, this.page.id);
     }
     let mouse_up = () => {
       removeEventListener('mouseup', mouse_up);

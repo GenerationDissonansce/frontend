@@ -38,7 +38,7 @@
                       }
                     }
                   </div>
-                  <app-browser-scrollbar style="height: 100%;"></app-browser-scrollbar>
+                  <app-browser-scrollbar [page]="page" style="height: 100%;"></app-browser-scrollbar>
                 </div>
               </div>
               <app-browser-bottom-bar (output_size)="ResizeListener($event)" [page]="page"></app-browser-bottom-bar>

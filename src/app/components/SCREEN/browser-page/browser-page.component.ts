@@ -48,9 +48,11 @@ export class BrowserPageComponent implements AfterViewInit {
       this.DefaultSize();
     });
     this.updatePageService.subscribers$.subscribe((e:any) => {
-      const percent = e.percent;
-      const height = this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height;
-      this.scroll_container.nativeElement.scrollTop = height * percent;
+      if (e.type === 'scroll' && e.pageId == this.page.id) {
+        const percent = e.percent;
+        const height = this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height;
+        this.scroll_container.nativeElement.scrollTop = height * percent;
+      }
     });
     this.updatePageService.close_pages_subscribers$.subscribe((e:any) => {
       if (e.id === this.page.id)
@@ -87,7 +89,7 @@ export class BrowserPageComponent implements AfterViewInit {
       this.page_container.nativeElement.style.top = `${this.page.top}px`;
       this.page_container.nativeElement.style.left = `${this.page.left}px`;
     }
-    this.updatePageService.ResizeEmitData([this.page.width!, this.page.height!, this.page.is_full_screen?1:0]);
+    this.updatePageService.ResizeEmitData([this.page.width!, this.page.height!, this.page.is_full_screen?1:0], this.page.id);
     this.page_container.nativeElement.style.display = 'flex';
   }
 
@@ -100,7 +102,7 @@ export class BrowserPageComponent implements AfterViewInit {
     this.page_container.nativeElement.style.width = `${this.page.width}px`;
     this.page.height = value[1];
     this.page_container.nativeElement.style.height = `${this.page.height}px`;
-    this.updatePageService.ResizeEmitData(value);
+    this.updatePageService.ResizeEmitData(value, this.page.id);
   }
 
   addListeners() {
@@ -122,7 +124,7 @@ export class BrowserPageComponent implements AfterViewInit {
     }
     let scroll_listener = () => {
       let percent = Math.min(1, this.scroll_container.nativeElement.scrollTop / (this.scroll_container.nativeElement.scrollHeight - this.scroll_container.nativeElement.getBoundingClientRect().height));
-      this.updatePageService.ScrollBarEmitData(percent);
+      this.updatePageService.ScrollBarEmitData(percent, this.page.id);
     }
 
     this.top_bar.nativeElement.addEventListener('mousedown', (e: any) => {

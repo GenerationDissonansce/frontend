@@ -19,7 +19,7 @@ export class ServicePageComponent implements AfterViewInit {
     public screen: UpdatePageService,
   ) {
     this.screen.subscribers$.subscribe((resp: any)=>{
-      if (resp.type == 'resize')
+      if (resp.type == 'resize' && resp.pageId == this.page.id)
         this.Resize(resp.page_size);
     });
   }

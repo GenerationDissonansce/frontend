@@ -1,0 +1,33 @@
+.btn {
+  width: 80px;
+  height: 26px;
+  bottom: -46px;
+  right: 0;
+  position: absolute;
+  animation: red_animation 2s infinite;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.btn:active, .btn:focus {
+  filter: brightness(.7);
+}
+
+@keyframes green_animation {
+
+}
+
+@keyframes red_animation {
+  0% { background: #c10000; }
+  5% { background: #af0000; }
+  10% { background: #bc0202; }
+  15% { background: #dd0202; }
+  20% { background: #9f0000; }
+  45% { background: #9f0000; }
+  50% { background: #d10000; }
+  55% { background: #830000; }
+  60% { background: #9e0202; }
+  65% { background: #c10101; }
+  70% { background: #c10000; }
+  100% { background: #c10000; }
+}

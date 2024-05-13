@@ -1,4 +1,10 @@
 <main class="screen-container">
-  <app-top-bar></app-top-bar>
-  <app-screen-content></app-screen-content>
+  <div class="turned-off" #off></div>
+  <div class="loading" #loading>
+    <app-loading-screen></app-loading-screen>
+  </div>
+  <div class="loaded" #loaded>
+    <app-top-bar></app-top-bar>
+    <app-screen-content></app-screen-content>
+  </div>
 </main>

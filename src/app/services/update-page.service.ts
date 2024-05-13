@@ -14,6 +14,9 @@ export class UpdatePageService {
   public close_pages_observer = new Subject()
   public close_pages_subscribers$ = this.close_pages_observer.asObservable();
 
+  public loading_screen_observer = new Subject()
+  public loading_screen_subscribers$ = this.loading_screen_observer.asObservable();
+
   ResizeEmitData(page_size: number[], pageId: number) {
     this.observer.next({page_size: page_size, type: 'resize', pageId: pageId});
   }
@@ -28,6 +31,10 @@ export class UpdatePageService {
 
   ClosePage(id: number) {
     this.close_pages_observer.next({id: id});
+  }
+
+  LoadScreen() {
+    this.loading_screen_observer.next({});
   }
 
   constructor() { }

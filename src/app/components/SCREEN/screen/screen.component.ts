@@ -16,21 +16,10 @@ import {UpdatePageService} from "../../../services/update-page.service";
   styleUrl: './screen.component.css'
 })
 export class ScreenComponent {
-  @ViewChild('off') off: any;
-  @ViewChild('loading') loading: any;
-  @ViewChild('loaded') loaded: any;
   private readonly LoadingAnimationTime: number = 3000;
 
   constructor(
     private updatePageService: UpdatePageService,
   ) {
-    this.updatePageService.loading_screen_subscribers$.subscribe(() => {
-      this.off.nativeElement.style.display = 'none';
-      this.loading.nativeElement.style.display = 'flex';
-      setTimeout(()=>{
-        this.loading.nativeElement.style.display = 'none';
-        this.loaded.nativeElement.style.display = 'flex';
-      }, this.LoadingAnimationTime);
-    });
   }
 }

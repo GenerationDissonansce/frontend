@@ -20,7 +20,14 @@ export class ScreenIconsService {
       y: 0,
       is_chosen: false
     },
-    {id: 3, name: 'assets/icons/texts/games.svg', url: 'assets/icons/games-icon.svg', x: 0, y: 0, is_chosen: false},
+    {
+      id: 3,
+      name: 'assets/icons/texts/clothes.svg',
+      url: 'assets/icons/clothes.png',
+      x: 0,
+      y: 0,
+      is_chosen: false
+    },
   ];
 
   constructor(

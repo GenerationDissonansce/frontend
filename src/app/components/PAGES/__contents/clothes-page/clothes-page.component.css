@@ -1,0 +1,21 @@
+.content {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  padding-bottom: 1vh;
+}
+
+.card {
+  width: 100%;
+}
+
+.card > img {
+  width: 100%;
+}
+
+.card > p {
+  text-transform: uppercase;
+  text-align: center;
+}

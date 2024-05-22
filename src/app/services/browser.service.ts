@@ -74,7 +74,7 @@ export class BrowserService {
         new_page.name = 'about us';
         break;
       case 3:
-        new_page.name = 'games';
+        new_page.name = 'clothes';
         break;
       default:
         break;

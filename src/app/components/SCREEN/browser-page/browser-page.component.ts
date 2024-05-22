@@ -10,9 +10,9 @@ import {
 import {BrowserBottomBarComponent} from "../../PAGES/__models/browser-bottom-bar/browser-bottom-bar.component";
 import {NgIf} from "@angular/common";
 import {UpdatePageService} from "../../../services/update-page.service";
-import {GamePageComponent} from "../../PAGES/__contents/game-page/game-page.component";
 import {AboutUsPageComponent} from "../../PAGES/__contents/about-us-page/about-us-page.component";
 import {ContactPageComponent} from "../../PAGES/__contents/contact-page/contact-page.component";
+import {ClothesPageComponent} from "../../PAGES/__contents/clothes-page/clothes-page.component";
 
 @Component({
   selector: 'app-browser-page',
@@ -24,9 +24,9 @@ import {ContactPageComponent} from "../../PAGES/__contents/contact-page/contact-
     BrowserAddressContainerComponent,
     BrowserBottomBarComponent,
     NgIf,
-    GamePageComponent,
     AboutUsPageComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    ClothesPageComponent
   ],
   templateUrl: './browser-page.component.html',
   styleUrl: './browser-page.component.css'

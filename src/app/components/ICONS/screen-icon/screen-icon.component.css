@@ -19,6 +19,7 @@
 }
 
 .icon-img {
+  max-width: 100%;
   height: calc(var(--screen-icon-size) - var(--screen-icon-text-height) - 12px);
 }
 

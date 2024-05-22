@@ -10,25 +10,12 @@ export class ScreenIconsService {
   public observer = new Subject();
   public subscribers$ = this.observer.asObservable();
   public readonly screen_icons: ScreenIconModel[] = [
-    {id: 0, name: 'assets/icons/texts/service.svg', url: 'assets/icons/service-icon.svg', x: 0, y: 0, is_chosen: false},
-    {id: 1, name: 'assets/icons/texts/contact.svg', url: 'assets/icons/contact-icon.svg', x: 0, y: 0, is_chosen: false},
-    {
-      id: 2,
-      name: 'assets/icons/texts/about-us.svg',
-      url: 'assets/icons/about-us-icon.svg',
-      x: 0,
-      y: 0,
-      is_chosen: false
-    },
-    {
-      id: 3,
-      name: 'assets/icons/texts/clothes.svg',
-      url: 'assets/icons/clothes.png',
-      x: 0,
-      y: 0,
-      is_chosen: false
-    },
+    {id: 0, name: 'assets/icons/texts/service.svg', url: 'assets/icons/service-icon.svg', x: 3, y: 0, is_chosen: false},
+    {id: 1, name: 'assets/icons/texts/contact.svg', url: 'assets/icons/contact-icon.svg', x: 1, y: 0, is_chosen: false},
+    {id: 2, name: 'assets/icons/texts/about-us.svg', url: 'assets/icons/about-us-icon.svg', x: 0, y: 0, is_chosen: false},
+    {id: 3, name: 'assets/icons/texts/clothes.svg', url: 'assets/icons/clothes.png', x: 2, y: 0, is_chosen: false},
   ];
+  public ChoosingIcon: boolean = false;
 
   constructor(
     private screen_size: ScreenSizeService,
@@ -76,11 +63,22 @@ export class ScreenIconsService {
 
   }
 
+  stopChoosingIcon() {
+    if (this.ChoosingIcon) return;
+    for (const screenIcon of this.screen_icons) screenIcon.is_chosen = false;
+    this.emitData();
+  }
+
   chooseIcon(id?: number) {
+    this.ChoosingIcon = true;
     for (const screenIcon of this.screen_icons) screenIcon.is_chosen = false;
     if (id !== undefined)
       this.screen_icons[id].is_chosen = true;
     this.emitData();
+
+    setTimeout(()=>{
+      this.ChoosingIcon = false;
+    }, 100);
   }
 
   moveIcon(id: number, rect: any) {

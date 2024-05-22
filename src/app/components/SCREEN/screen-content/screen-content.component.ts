@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {NgForOf, NgStyle} from "@angular/common";
 import {ScreenIconsService} from "../../../services/screen-icons.service";
 import {ScreenIconComponent} from "../../ICONS/screen-icon/screen-icon.component";
@@ -20,7 +20,8 @@ import {PageModel} from "../../../models/page.model";
   templateUrl: './screen-content.component.html',
   styleUrl: './screen-content.component.css'
 })
-export class ScreenContentComponent {
+export class ScreenContentComponent implements AfterViewInit {
+  @ViewChild('container') container: any;
   public pages: PageModel[] = [];
 
   constructor(
@@ -30,9 +31,19 @@ export class ScreenContentComponent {
     this.SubscribeToPagesChanges();
   }
 
+  ngAfterViewInit() {
+    this.AddEventListeners();
+  }
+
   SubscribeToPagesChanges() {
     this.browser_service.subscribers$.subscribe(()=>{
       this.pages = this.browser_service.pages;
+    })
+  }
+
+  AddEventListeners() {
+    this.container.nativeElement.addEventListener('mousedown', ()=>{
+      this.screen_icons_service.stopChoosingIcon();
     })
   }
 }

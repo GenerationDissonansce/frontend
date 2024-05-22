@@ -16,6 +16,10 @@
   height: 13px;
 }
 
+.arrow:active {
+  filter: brightness(.8);
+}
+
 .rev {
   transform: rotate(180deg);
 }

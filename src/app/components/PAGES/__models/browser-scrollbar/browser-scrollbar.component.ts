@@ -15,6 +15,9 @@ export class BrowserScrollbarComponent implements AfterViewInit {
   @Input() page!: PageModel;
   private minusy = 0;
 
+  ScrollingDown: boolean = false;
+  ScrollingUp: boolean = false;
+
   constructor(
     private updatePageService: UpdatePageService,
   ) {
@@ -54,5 +57,45 @@ export class BrowserScrollbarComponent implements AfterViewInit {
     }
 
     this.icon.nativeElement.addEventListener('mousedown', mouse_down);
+  }
+
+  StartScrollDown() {
+    this.ScrollingDown = true;
+    this.ScrollDown();
+    addEventListener('mouseup', () => { this.ScrollingDown = false; });
+  }
+
+  ScrollDown() {
+    if (!this.ScrollingDown) return;
+    const containerPos = this.container.nativeElement.getBoundingClientRect();
+    const iconPos = this.icon.nativeElement.getBoundingClientRect();
+    console.log(iconPos.top, containerPos.top);
+    let percent = (iconPos.top - containerPos.top - 1) / (containerPos.height - iconPos.height);
+
+    percent = Math.min(percent + 0.01, 1);
+    this.updatePageService.ScrollEmitData(percent, this.page.id);
+    this.updatePageService.ScrollBarEmitData(percent, this.page.id);
+
+    setTimeout(() => { this.ScrollDown(); }, 10);
+  }
+
+  StartScrollingUp() {
+    this.ScrollingUp = true;
+    this.ScrollUp();
+    addEventListener('mouseup', () => { this.ScrollingUp = false; });
+  }
+
+  ScrollUp() {
+    if (!this.ScrollingUp) return;
+    const containerPos = this.container.nativeElement.getBoundingClientRect();
+    const iconPos = this.icon.nativeElement.getBoundingClientRect();
+    let percent = (iconPos.top - containerPos.top - 1) / (containerPos.height - iconPos.height);
+
+    percent = Math.max(percent-0.01, 0);
+    console.log(percent);
+    this.updatePageService.ScrollEmitData(percent, this.page.id);
+    this.updatePageService.ScrollBarEmitData(percent, this.page.id);
+
+    setTimeout(() => { this.ScrollUp(); }, 10);
   }
 }

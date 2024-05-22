@@ -1,6 +1,6 @@
 <div class="container">
   <div class="top-icon">
-    <img class="arrow" src="assets/browser/arrow.svg" alt="">
+    <img class="arrow" (mousedown)="StartScrollingUp()" src="assets/browser/arrow.svg" alt="">
   </div>
   <div class="center" #container>
     <div class="icon" #icon>
@@ -17,6 +17,6 @@
     </div>
   </div>
   <div class="bottom-icon">
-    <img class="arrow rev" src="assets/browser/arrow.svg" alt="">
+    <img class="arrow rev" (mousedown)="StartScrollDown()" src="assets/browser/arrow.svg" alt="">
   </div>
 </div>

@@ -92,7 +92,6 @@ export class BrowserScrollbarComponent implements AfterViewInit {
     let percent = (iconPos.top - containerPos.top - 1) / (containerPos.height - iconPos.height);
 
     percent = Math.max(percent-0.01, 0);
-    console.log(percent);
     this.updatePageService.ScrollEmitData(percent, this.page.id);
     this.updatePageService.ScrollBarEmitData(percent, this.page.id);
 

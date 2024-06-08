@@ -12,7 +12,8 @@ import {NgIf} from "@angular/common";
 import {UpdatePageService} from "../../../services/update-page.service";
 import {AboutUsPageComponent} from "../../PAGES/__contents/about-us-page/about-us-page.component";
 import {ContactPageComponent} from "../../PAGES/__contents/contact-page/contact-page.component";
-import {ClothesPageComponent} from "../../PAGES/__contents/clothes-page/clothes-page.component";
+import {ClothesPageComponent} from "../../PAGES/__contents/shop/clothes-page/clothes-page.component";
+import {ShopMainPageComponent} from "../../PAGES/__contents/shop/shop-main-page/shop-main-page.component";
 
 @Component({
   selector: 'app-browser-page',
@@ -26,7 +27,8 @@ import {ClothesPageComponent} from "../../PAGES/__contents/clothes-page/clothes-
     NgIf,
     AboutUsPageComponent,
     ContactPageComponent,
-    ClothesPageComponent
+    ClothesPageComponent,
+    ShopMainPageComponent
   ],
   templateUrl: './browser-page.component.html',
   styleUrl: './browser-page.component.css'

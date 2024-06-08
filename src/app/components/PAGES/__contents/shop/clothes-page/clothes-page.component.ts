@@ -1,12 +1,15 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
-import {PageModel} from "../../../../models/page.model";
-import {ServiceService} from "../../../../services/service.service";
-import {UpdatePageService} from "../../../../services/update-page.service";
+import {PageModel} from "../../../../../models/page.model";
+import {ServiceService} from "../../../../../services/service.service";
+import {UpdatePageService} from "../../../../../services/update-page.service";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-clothes-page',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './clothes-page.component.html',
   styleUrl: './clothes-page.component.css'
 })

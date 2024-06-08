@@ -1,1 +1,18 @@
-<p>shop-item-page works!</p>
+<div class="top-bar">
+  <a routerLink="">
+    <p class="back"><i class="arrow left"></i> Back</p>
+  </a>
+</div>
+
+<div class="content">
+  <img [src]="product.src">
+  @if (count == 0) {
+    <button (click)="add()" class="basket btn">в корзину</button>
+  } @else {
+    <div class="buttons">
+      <button (click)="remove()" class="btn2">-</button>
+      <p>{{count}}</p>
+      <button (click)="add()" class="btn2">+</button>
+    </div>
+  }
+</div>

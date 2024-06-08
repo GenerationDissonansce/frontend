@@ -1,1 +1,22 @@
-<p>shop-basket-page works!</p>
+<div class="top-bar">
+  <a routerLink="">
+    <p class="back"><i class="arrow left"></i> Back</p>
+  </a>
+</div>
+
+<div class="content">
+  @for(product of service.products; track service.products; let index = $index) {
+    @if(counts[index] != 0) {
+      <div class="card">
+        <img [src]="product.src" alt="">
+        <div class="buttons">
+          <button (click)="remove(index)" class="btn2">-</button>
+          <p>{{counts[index]}}</p>
+          <button (click)="add(index)" class="btn2">+</button>
+        </div>
+      </div>
+    }
+  }
+
+  <button class="btn" (click)="request()">оформить заказ</button>
+</div>

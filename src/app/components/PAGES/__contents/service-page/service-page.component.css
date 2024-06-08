@@ -1,0 +1,71 @@
+p {
+  line-height: 110%;
+}
+
+.content {
+  padding: 0 10px 10px;
+}
+
+.question > p > svg {
+  transform: translateY(calc((19.5px - 15px) / 2));
+}
+
+.question {
+  margin-top: 10px;
+  box-sizing: border-box;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  z-index: 2;
+  background: white;
+}
+
+.card {
+  width: 100%;
+  height: 0;
+  box-sizing: content-box;
+  overflow-y: hidden;
+  transition-duration: .3s;
+  transform-origin: top;
+  padding: 0;
+  z-index: 1;
+}
+
+.opened-card {
+  height: 40px;
+  padding: 4px 0;
+}
+
+.close {
+  transform-origin: center;
+  transition-duration: .3s;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 5px 10px;
+  gap: 3px;
+}
+
+.tb-text:hover {
+  color: #636363!important;
+}
+
+.chosen-text {
+  color: black!important;
+}
+
+.top-bar > p {
+  font-size:           15px;
+  font-weight:         600;
+  transition-duration: .3s;
+  cursor:              pointer;
+  color:               #b3b3b3;
+}
+

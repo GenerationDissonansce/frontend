@@ -1,0 +1,50 @@
+.container {
+  position:            fixed;
+  top:                 0;
+  width:               100vw;
+  height:              100vh;
+  flex-direction:      row;
+  justify-content:     flex-end;
+  display:             none;
+  right:               0;
+
+}
+
+.background {
+  background: rgba(0, 0, 0, .4);
+  position:   absolute;
+  top:        0;
+  left:       0;
+  width: 100vw;
+  height: 100vh;
+  opacity:    0;
+  transition-duration: .3s;
+}
+
+.content {
+  position:        absolute;
+  top:             0;
+  right:           -100%;
+  width:           fit-content;
+  height:          100vh;
+  background:      white;
+  font-size:       20px;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     flex-start;
+  justify-content: flex-start;
+  padding:         50px 100px 0 10px;
+  max-width:       100vw;
+  text-decoration: underline;
+  gap:             10px;
+  transition-duration: .3s;
+}
+
+.cross {
+  position: absolute;
+  top:      20px;
+  right:    20px;
+  cursor:   pointer;
+}
+
+.link { cursor: pointer; }

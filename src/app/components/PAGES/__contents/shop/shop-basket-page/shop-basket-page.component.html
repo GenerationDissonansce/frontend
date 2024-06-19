@@ -9,14 +9,21 @@
     @if(counts[index] != 0) {
       <div class="card">
         <img [src]="product.src" alt="">
-        <div class="buttons">
-          <button (click)="remove(index)" class="btn2">-</button>
-          <p>{{counts[index]}}</p>
-          <button (click)="add(index)" class="btn2">+</button>
+        <div style="display: flex; flex-direction: row; gap: 30px; align-content: center; align-items: center;">
+          <p class="el-price">{{product.price}}₽</p>
+          <div class="buttons">
+            <button (click)="remove(index)" class="btn2">-</button>
+            <p>{{counts[index]}}</p>
+            <button (click)="add(index)" class="btn2">+</button>
+          </div>
         </div>
       </div>
     }
   }
 
-  <button class="btn" (click)="request()">оформить заказ</button>
+  <div class="final-price">
+    <p>Суммарная стоимость: <b>{{getFinalPrice()}}₽</b></p>
+  </div>
+
+  <button class="btn" (click)="request()"><b>оформить заказ</b></button>
 </div>

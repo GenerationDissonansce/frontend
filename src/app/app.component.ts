@@ -3,11 +3,12 @@ import {RouterOutlet} from '@angular/router';
 import {ScreenComponent} from "./components/SCREEN/screen/screen.component";
 import {ScreenSizeService} from "./services/screen-size.service";
 import {ComputerButtonComponent} from "./components/__models/computer-button/computer-button.component";
+import {MainMobileComponent} from "./components/MOBILE/main-mobile/main-mobile.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ScreenComponent, ComputerButtonComponent],
+  imports: [RouterOutlet, ScreenComponent, ComputerButtonComponent, MainMobileComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -6,6 +6,7 @@
 
 <div class="content">
   <img [src]="product.src">
+  <p class="price">Стоимость: {{product.price}}₽</p>
   @if (count == 0) {
     <button (click)="add()" class="basket btn">в корзину</button>
   } @else {

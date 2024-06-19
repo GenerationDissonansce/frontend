@@ -3,7 +3,8 @@
   height: fit-content;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  justify-items: center;
+  justify-content: stretch;
+  align-content: stretch;
   padding-bottom: 1vh;
 }
 
@@ -29,6 +30,10 @@
   height: 20px;
   margin-bottom: 5px;
   margin-top: 10px;
+
+  @media screen and (max-width: 1089px) {
+    display: none;
+  }
 }
 
 .icon {

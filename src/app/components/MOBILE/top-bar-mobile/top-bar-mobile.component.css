@@ -1,0 +1,33 @@
+.content {
+  width:           100%;
+  display:         flex;
+  flex-direction:  row;
+  justify-content: center;
+  gap:             20px;
+  padding:         20px;
+  font-size:       20px;
+  text-decoration: underline;
+}
+
+.content2 {
+  width:           100%;
+  display:         none;
+  flex-direction:  row;
+  justify-content: flex-end;
+  padding:         20px;
+  font-size:       20px;
+}
+
+.content2 > svg {
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 512px) {
+  .content { display: none; }
+
+  .content2 { display: flex; }
+}

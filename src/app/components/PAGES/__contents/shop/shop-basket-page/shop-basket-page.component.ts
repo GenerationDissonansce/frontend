@@ -41,4 +41,11 @@ export class ShopBasketPageComponent implements OnInit {
   request() {
 
   }
+
+  getFinalPrice() {
+    let result = 0;
+    for (let i = 0; i < this.service.products.length; i++)
+      result += this.counts[i]*this.service.products[i].price;
+    return result;
+  }
 }

@@ -25,14 +25,21 @@ export class ClothesPageComponent implements AfterViewInit {
       if (resp.type == 'resize' && resp.pageId == this.page.id)
         this.Resize(resp.page_size);
     });
+
+    if (window.innerWidth<1089)
+      window.addEventListener('resize', (e)=>{
+        this.Resize([0,0]);
+      });
   }
 
   ngAfterViewInit() {
-    this.Resize([this.page.width!, this.page.height!]);
+    if (window.innerWidth>1089)
+      this.Resize([this.page.width!, this.page.height!]);
   }
 
   Resize(page_size: number[]) {
-    const width = page_size[2] == 1? 1000 : page_size[0];
+    let width = page_size[2] == 1? 1000 : page_size[0];
+    if (window.innerWidth < 1089) width=window.innerWidth;
     if (width < 360)
       this.grid.nativeElement.style.gridTemplateColumns = '50% 50%';
     else if (width < 450)

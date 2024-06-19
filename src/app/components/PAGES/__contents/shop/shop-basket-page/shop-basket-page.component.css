@@ -90,3 +90,16 @@
   font-size: 15px;
   transition-duration: .3s;
 }
+
+.btn:hover {
+  background: #3c3c3c;
+}
+
+.final-price  {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+}

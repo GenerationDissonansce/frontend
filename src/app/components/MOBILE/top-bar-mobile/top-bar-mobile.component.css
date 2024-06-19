@@ -7,6 +7,8 @@
   padding:         20px;
   font-size:       20px;
   text-decoration: underline;
+  position: fixed;
+  background: white;
 }
 
 .content2 {

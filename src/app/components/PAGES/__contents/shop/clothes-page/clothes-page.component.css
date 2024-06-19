@@ -8,8 +8,19 @@
   padding-bottom: 1vh;
 }
 
+.content {
+  @media screen and (max-width: 1089px) {
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px 1vh 50px;
+    align-content: center;
+    align-items: center;
+  }
+}
+
 .card {
   width: 100%;
+  max-width: 300px;
 }
 
 .card > img {

@@ -25,7 +25,7 @@ export class BrowserScrollbarComponent implements AfterViewInit {
       if (e.pageId == this.page.id) {
         const percent = e.percent;
         const height = this.container.nativeElement.getBoundingClientRect().height - this.icon.nativeElement.getBoundingClientRect().height;
-        const top = height * percent;
+        const top = Math.max(0,height * percent);
         this.icon.nativeElement.style.top = `${top}px`;
       }
     })

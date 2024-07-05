@@ -14,6 +14,7 @@ import {LocalstorageService} from "../../../../../services/localstorage.service"
 })
 export class ShopBasketPageComponent implements OnInit {
   counts: number[] = [];
+  checkout: any;
 
   constructor(
     public service: ServiceService,
@@ -26,6 +27,16 @@ export class ShopBasketPageComponent implements OnInit {
       if (this.localstorage.get('item'+i) == '') this.localstorage.set('item'+i, '0');
       this.counts.push(Number(this.localstorage.get('item'+i)));
     }
+
+    // @ts-ignore
+    this.checkout = new window.YooMoneyCheckoutWidget({
+      confirmation_token: 'confirmation-token', //Токен, который перед проведением оплаты нужно получить от ЮKassa
+      return_url: 'https://example.com', //Ссылка на страницу завершения оплаты
+      error_callback: function(error: any) {
+
+        console.log(error);
+      }
+    });
   }
 
   remove(index: number) {
@@ -39,7 +50,11 @@ export class ShopBasketPageComponent implements OnInit {
   }
 
   request() {
-
+    this.checkout.render('payment-form')
+      //Метод возвращает Promise, исполнение которого говорит о полной загрузке платежной формы (можно не использовать).
+      .then(() => {
+        //Код, который нужно выполнить после отображения платежной формы.
+      });
   }
 
   getFinalPrice() {

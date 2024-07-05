@@ -10,7 +10,7 @@ export class ScreenIconsService {
   public observer = new Subject();
   public subscribers$ = this.observer.asObservable();
   public readonly screen_icons: ScreenIconModel[] = [
-    {id: 0, name: 'assets/icons/texts/service.svg', url: 'assets/icons/service-icon.svg', x: 3, y: 0, is_chosen: false},
+    {id: 0, name: './assets/icons/texts/service.svg', url: 'assets/icons/service-icon.svg', x: 3, y: 0, is_chosen: false},
     {id: 1, name: 'assets/icons/texts/contact.svg', url: 'assets/icons/contact-icon.svg', x: 1, y: 0, is_chosen: false},
     {id: 2, name: 'assets/icons/texts/about-us.svg', url: 'assets/icons/about-us-icon.svg', x: 0, y: 0, is_chosen: false},
     {id: 3, name: 'assets/icons/texts/clothes.svg', url: 'assets/icons/clothes.png', x: 2, y: 0, is_chosen: false},

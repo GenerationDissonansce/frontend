@@ -13,7 +13,7 @@ import {MainMobileComponent} from "./components/MOBILE/main-mobile/main-mobile.c
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  title = 'GenerationalDissonance';
+  title = 'Диссонанс Поколений';
 
   constructor(
     public screen_size_service: ScreenSizeService,

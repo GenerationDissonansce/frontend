@@ -11,6 +11,8 @@
 }
 
 .content2 {
+  position: fixed;
+  background: white;
   width:           100%;
   display:         none;
   flex-direction:  row;

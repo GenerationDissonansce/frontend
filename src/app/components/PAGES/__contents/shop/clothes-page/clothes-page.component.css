@@ -1,10 +1,13 @@
 .content {
   width: 100%;
   height: fit-content;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  justify-content: stretch;
-  align-content: stretch;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  /*display: grid;*/
+  /*grid-template-columns: 25% 25% 25% 25%;*/
+  /*justify-content: stretch;*/
+  /*align-content: stretch;*/
   padding-bottom: 1vh;
 }
 

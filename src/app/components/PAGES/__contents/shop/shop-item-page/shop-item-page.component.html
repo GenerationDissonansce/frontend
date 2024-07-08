@@ -8,23 +8,27 @@
   <div class="img-container">
     <div class="img-content">
       <img [src]="src">
-      <div (click)="minusSrcIndex()" style="left: 0;" class="arrow-container">
-        <svg style="transform: rotate(180deg)" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30" height="30" viewBox="0 0 24 24"><path d="M17 12c0 .2-.06.4-.17.55l-5 7.5c-.18.27-.48.45-.83.45H8c-.55 0-1-.45-1-1 0-.2.06-.4.17-.55L11.8 12 7.17 5.05A.944.944 0 0 1 7 4.5c0-.55.45-1 1-1h3c.35 0 .65.18.83.45l5 7.5c.11.15.17.35.17.55z"/></svg>
-      </div>
-      <div (click)="plusSrcIndex()" style="right: 0;" class="arrow-container">
-        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30" height="30" viewBox="0 0 24 24"><path d="M17 12c0 .2-.06.4-.17.55l-5 7.5c-.18.27-.48.45-.83.45H8c-.55 0-1-.45-1-1 0-.2.06-.4.17-.55L11.8 12 7.17 5.05A.944.944 0 0 1 7 4.5c0-.55.45-1 1-1h3c.35 0 .65.18.83.45l5 7.5c.11.15.17.35.17.55z"/></svg>
-      </div>
-    </div>
-    <div class="circles-container">
-      @for (circle of product.images; track product; let index=$index) {
-        <div class="circle" [class.circle-chosen]="index == src_index" (click)="chooseSrc(index)"></div>
+      @if(product.images.length > 1) {
+        <div (click)="minusSrcIndex()" style="left: 0;" class="arrow-container">
+          <svg style="transform: rotate(180deg)" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30" height="30" viewBox="0 0 24 24"><path d="M17 12c0 .2-.06.4-.17.55l-5 7.5c-.18.27-.48.45-.83.45H8c-.55 0-1-.45-1-1 0-.2.06-.4.17-.55L11.8 12 7.17 5.05A.944.944 0 0 1 7 4.5c0-.55.45-1 1-1h3c.35 0 .65.18.83.45l5 7.5c.11.15.17.35.17.55z"/></svg>
+        </div>
+        <div (click)="plusSrcIndex()  " style="right: 0;" class="arrow-container">
+          <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30" height="30" viewBox="0 0 24 24"><path d="M17 12c0 .2-.06.4-.17.55l-5 7.5c-.18.27-.48.45-.83.45H8c-.55 0-1-.45-1-1 0-.2.06-.4.17-.55L11.8 12 7.17 5.05A.944.944 0 0 1 7 4.5c0-.55.45-1 1-1h3c.35 0 .65.18.83.45l5 7.5c.11.15.17.35.17.55z"/></svg>
+        </div>
       }
     </div>
+    @if(product.images.length > 1) {
+      <div class="circles-container">
+        @for (circle of product.images; track product; let index=$index) {
+          <div class="circle" [class.circle-chosen]="index == src_index" (click)="chooseSrc(index)"></div>
+        }
+      </div>
+    }
   </div>
   <p class="price">Стоимость: {{product.price}}₽</p>
-  @if (count == 0) {
+  @if (count == 0 && product.valid) {
     <button (click)="add()" class="basket btn">в корзину</button>
-  } @else {
+  } @else if (product.valid) {
     <div class="buttons">
       <button (click)="remove()" class="btn2">-</button>
       <p>{{count}}</p>

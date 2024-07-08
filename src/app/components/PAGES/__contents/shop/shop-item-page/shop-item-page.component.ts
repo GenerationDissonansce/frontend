@@ -3,6 +3,7 @@ import {ServiceService} from "../../../../../services/service.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ProductModel} from "../../../../../models/product.model";
 import {LocalstorageService} from "../../../../../services/localstorage.service";
+import {parseDecoratorInputTransformFunction} from "@angular/compiler-cli/src/ngtsc/annotations/directive";
 
 @Component({
   selector: 'app-shop-item-page',
@@ -17,6 +18,8 @@ export class ShopItemPageComponent implements OnInit {
   product!: ProductModel;
   count: number = 0;
   key!: string;
+  src: string = '';
+  src_index: number = 0;
 
   constructor(
     public localstorage: LocalstorageService,
@@ -27,6 +30,22 @@ export class ShopItemPageComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct();
+    this.src = this.product.images[this.src_index];
+  }
+
+  chooseSrc(index: number) {
+    this.src_index = index;
+    this.src = this.product.images[this.src_index];
+  }
+
+  minusSrcIndex() {
+    this.src_index = Math.max(0, this.src_index-1);
+    this.src = this.product.images[this.src_index];
+  }
+
+  plusSrcIndex() {
+    this.src_index = Math.min(this.product.images.length-1, this.src_index+1);
+    this.src = this.product.images[this.src_index];
   }
 
   getProduct(): void {

@@ -85,3 +85,58 @@ img {
   font-size: 20px;
   margin-bottom: 30px !important;
 }
+
+.circles-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.circle {
+  --size: 15px;
+  width: var(--size);
+  height: var(--size);
+  border: 1px solid gray;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.circle-chosen {
+  background: gray;
+}
+
+.img-content {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.img-content:hover .arrow-container {
+  opacity: 1;
+}
+
+.arrow-container {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 40px;
+  opacity: 0;
+  background: rgba(0,0,0,40%);
+  transition-duration: .3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+

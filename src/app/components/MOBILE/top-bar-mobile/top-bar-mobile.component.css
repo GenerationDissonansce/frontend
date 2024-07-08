@@ -6,7 +6,6 @@
   gap:             20px;
   padding:         20px;
   font-size:       20px;
-  text-decoration: underline;
   position: fixed;
   background: white;
 }
@@ -25,7 +24,9 @@
 }
 
 .link {
+  text-transform: uppercase;
   cursor: pointer;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 512px) {

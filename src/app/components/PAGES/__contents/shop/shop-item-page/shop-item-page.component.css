@@ -11,6 +11,10 @@
 }
 
 .back {
+  @media screen and (min-width: 1200px) {
+    margin-top: 10px!important;
+  }
+  text-transform: uppercase;
   padding:        0 5px !important;
   display:        flex;
   flex-direction: row;
@@ -29,10 +33,11 @@
 }
 
 .content {
-  width:           100%;
+  width: 100%;
+  height:           calc(100vh - 81px);
   display:         flex;
   flex-direction:  column;
-  justify-content: flex-start;
+  justify-content: center;
   align-content:   center;
   align-items:     center;
 }
@@ -119,8 +124,13 @@ img {
   height: 300px;
 }
 
-.img-content:hover .arrow-container {
+.arrow-container:hover {
   opacity: 1;
+}
+
+img {
+  height: 300px;
+  width: 300px;
 }
 
 .arrow-container {
@@ -131,7 +141,7 @@ img {
   height: 100%;
   width: 40px;
   opacity: 0;
-  background: rgba(0,0,0,40%);
+  /*background: rgba(0,0,0,40%);*/
   transition-duration: .3s;
   display: flex;
   flex-direction: column;

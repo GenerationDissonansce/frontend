@@ -4,12 +4,10 @@
 
 <div class="content" #grid>
   @for(product of service.products; track service.products; let index = $index) {
-    <a [routerLink]="'item/'+index">
-      <div class="card">
+    <a class="card" [routerLink]="'item/'+index">
         <img [src]="product.src" alt="">
         <p class="fw-600">{{product.name}}</p>
         <p class="fw-600">{{product.price}}</p>
-      </div>
     </a>
   }
 </div>

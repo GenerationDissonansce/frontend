@@ -11,6 +11,10 @@
 }
 
 .back {
+  @media screen and (min-width: 1200px) {
+    margin-top: 10px!important;
+  }
+  text-transform: uppercase;
   padding: 0 5px!important;
   display: flex;
   flex-direction: row;

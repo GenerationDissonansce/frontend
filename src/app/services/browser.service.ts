@@ -58,8 +58,8 @@ export class BrowserService {
       name: '',
       top: top,
       left: left,
-      width: 300,
-      height: 150,
+      width: 500,
+      height: 300,
       z_index: 1,
       is_full_screen: false,
     }

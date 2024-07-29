@@ -2,6 +2,7 @@
   <a routerLink="">
     <p class="back"><i class="arrow left"></i> Back</p>
   </a>
+  <a routerLink="/basket"><img class="img" src="assets/icons/store.icon.svg" alt=""></a>
 </div>
 
 <div class="content">
@@ -25,14 +26,17 @@
       </div>
     }
   </div>
-  <p class="price">Стоимость: {{product.price}}₽</p>
+  <p style="margin-top: 10px!important;" class="price">Стоимость: {{product.price}}₽</p>
   @if (count == 0 && product.valid) {
-    <button (click)="add()" class="basket btn">в корзину</button>
+    <button style="margin-top: 10px!important;" (click)="add()" class="basket btn">в корзину</button>
   } @else if (product.valid) {
-    <div class="buttons">
+    <div style="margin-top: 10px!important;" class="buttons">
       <button (click)="remove()" class="btn2">-</button>
       <p>{{count}}</p>
       <button (click)="add()" class="btn2">+</button>
     </div>
+    <a routerLink="/basket" style="margin-top: 5px;">
+      <button class="basket btn">к покупкам</button>
+    </a>
   }
 </div>

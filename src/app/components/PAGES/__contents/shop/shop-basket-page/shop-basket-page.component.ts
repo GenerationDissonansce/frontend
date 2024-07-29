@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ServiceService} from "../../../../../services/service.service";
 import {LocalstorageService} from "../../../../../services/localstorage.service";
+import {PaymentService} from "../../../../../services/api/yookassa.service";
 
 @Component({
   selector: 'app-shop-basket-page',
@@ -19,6 +20,7 @@ export class ShopBasketPageComponent implements OnInit {
   constructor(
     public service: ServiceService,
     public localstorage: LocalstorageService,
+    private paymentService: PaymentService
   ) {
   }
 
@@ -39,51 +41,33 @@ export class ShopBasketPageComponent implements OnInit {
     this.localstorage.set('item'+index, String(this.counts[index]));
   }
 
-  async request() {
-    document.getElementById('payment-form')!.innerHTML = '';
-    let response = fetch('https://api.yookassa.ru/v3/payments', {
-      method: 'POST',
-      headers: {
-        'Idempotence-Key': 'Idempotence-Key: 12312',
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('latin:')
+  makePayment() {
+    const amount = `${this.getFinalPrice()}.00`;
+    const currency = 'RUB';
+    const returnUrl = 'https://dissonanspokoleniy.com/';
+    const description = 'Заказ №1';
+
+    this.paymentService.createPayment(amount, currency, returnUrl, description).subscribe(
+      (response: any) => {
+        console.log('Payment initiated:', response);
+        // Redirect the user to the confirmation URL
+        window.location.href = response.confirmation.confirmation_url;
       },
-      body: JSON.stringify({
-        'amount': {
-          'value': `${this.getFinalPrice()}.00`,
-          'currency': 'RUB'
-        },
-        'confirmation': {
-          'type': 'embedded'
-        },
-        'capture': true,
-        'description': ''
-      })
-    }).then(
-      resp => {
-        console.log(resp);
-        // @ts-ignore
-        this.checkout = new window.YooMoneyCheckoutWidget({
-          confirmation_token: 'ct-287e0c37-000f-5000-8000-16961d35b0fd', //Токен, который перед проведением оплаты нужно получить от ЮKassa
-          return_url: 'http://localhost:4200', //Ссылка на страницу завершения оплаты, это может быть любая ваша страница
-          error_callback: function(error: any) {
-            console.log(error)
-          }
-        });
-        this.checkout.render('payment-form');
-      },
-      error => {
-        // @ts-ignore
-        this.checkout = new window.YooMoneyCheckoutWidget({
-          confirmation_token: 'ct-287e0c37-000f-5000-8000-16961d35b0fd', //Токен, который перед проведением оплаты нужно получить от ЮKassa
-          return_url: 'http://localhost:4200', //Ссылка на страницу завершения оплаты, это может быть любая ваша страница
-          error_callback: function(error: any) {
-            console.log(error)
-          }
-        });
-        this.checkout.render('payment-form');
+      (error: any) => {
+        console.error('Payment error:', error);
       }
-    )
+    );
+  }
+
+  LOL() {
+    // @ts-ignore
+    this.checkout = new window.YooMoneyCheckoutWidget({
+      confirmation_token: 'ct-287e0c37-000f-5000-8000-16961d35b0fd', //Токен, который перед проведением оплаты нужно получить от ЮKassa
+      return_url: 'http://localhost:4200', //Ссылка на страницу завершения оплаты, это может быть любая ваша страница
+      error_callback: function(error: any) {
+        console.log(error)
+      }
+    });
   }
 
   getFinalPrice() {

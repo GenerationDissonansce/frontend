@@ -13,6 +13,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }
+            ],
             "outputPath": "dist/generational-dissonance",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -54,6 +60,9 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

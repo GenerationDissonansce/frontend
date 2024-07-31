@@ -2,6 +2,10 @@
   margin-right: 5px;
 }
 
+.top-bar {
+  margin-top: 10px;
+}
+
 .back > i {
   transition-duration: .3s;
 }

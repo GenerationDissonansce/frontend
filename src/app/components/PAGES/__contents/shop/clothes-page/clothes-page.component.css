@@ -13,7 +13,6 @@
 
 .content {
   @media screen and (max-width: 1089px) {
-    height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +23,6 @@
 
 
   @media screen and (max-width: 700px) {
-    height: calc(100vh - 350px);
     display: flex;
     flex-direction: column;
     padding: 0 50px 3vh 50px;
@@ -43,6 +41,11 @@
   }
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .card > img {

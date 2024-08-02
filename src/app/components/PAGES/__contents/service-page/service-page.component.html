@@ -4,17 +4,25 @@
   <p [class.chosen-text]="index === 0" class="tb-text" (click)="index = 0">RU</p>
 </div>
 <div class="content">
-  @for (text of texts[index]; track index; let i = $index) {
-    @if (i % 2 == 0) {
-      <div class="question">
-        <p>
-          {{ text }}
-        </p>
-      </div>
-    } @else {
-      <div class="card">
-        <p>{{text}}</p>
-      </div>
+  <div>
+    @for (text of texts[index]; track index; let i = $index) {
+      @if (i % 2 == 0) {
+        <div class="question">
+          <p>
+            {{ text }}
+          </p>
+        </div>
+      } @else {
+        <div class="card">
+          <p>{{text}}</p>
+        </div>
+      }
     }
-  }
+  </div>
+
+  <p class="ip-text">
+    ИП КОЗЛОВСКИЙ ВЛАДИМИР ВИКТОРОВИЧ<br>
+    ИНН клиента: 7702070139<br>
+    ОГРНИП: 307482123600027<br>
+  </p>
 </div>

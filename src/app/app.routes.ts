@@ -8,7 +8,7 @@ import {ContactPageComponent} from "./components/PAGES/__contents/contact-page/c
 import {IsMobileGuard} from "./guards/is-mobile.guard";
 
 export const routes: Routes = [
-  {path: '', component: ClothesPageComponent},
+  {path: '', component: ClothesPageComponent, pathMatch: 'full'},
   {path: 'basket', component: ShopBasketPageComponent},
   {path: 'item/:id', component: ShopItemPageComponent},
   {path: 'about-us', component: AboutUsPageComponent, canActivate: [IsMobileGuard]},

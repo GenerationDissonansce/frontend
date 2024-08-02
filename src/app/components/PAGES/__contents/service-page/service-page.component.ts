@@ -24,7 +24,7 @@ export class ServicePageComponent {
       '-Как можно оплатить доставку?',
       '-Оплата возможна картой или через СБП.',
       '-Я могу вернуть товар?',
-      '-Да, только если вещь не вскрыта. Возврат возможен в течение двух недель.',
+      '-Да, только если вещь находится в надлежащем качестве. Возврат возможен в течение двух недель.',
     ],
     [
       '-How does delivery work?',
@@ -39,7 +39,7 @@ export class ServicePageComponent {
       '-How can I pay for delivery?',
       '-Payment possible by card or via SBP.',
       '-Can I return the goods?',
-      '-Yes, only if the item is not opened. Returns are possible within two weeks.',
+      '-Yes, only if the item is in proper quality. Returns are possible within two weeks.',
     ],
   ]
   index: number = 0;

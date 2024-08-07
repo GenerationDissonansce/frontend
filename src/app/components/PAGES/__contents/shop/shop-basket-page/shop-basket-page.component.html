@@ -5,27 +5,33 @@
 </div>
 
 <div class="content">
-  @for(product of service.products; track service.products; let index = $index) {
-    @if(counts[index] != 0) {
-      <div class="card">
-        <img [src]="product.src" alt="">
-        <div style="display: flex; flex-direction: row; gap: 30px; align-content: center; align-items: center;">
-          <p class="el-price">{{product.price}}₽</p>
-          <div class="buttons">
-            <button (click)="remove(index)" class="btn2">-</button>
-            <p>{{counts[index]}}</p>
-            <button (click)="add(index)" class="btn2">+</button>
+  @if (getFinalPrice() === 0) {
+    <div class="flex-container">
+      <p>Корзина пуста</p>
+    </div>
+  } @else {
+    @for (product of service.products; track service.products; let index = $index) {
+      @if (counts[index] != 0) {
+        <div class="card">
+          <img [src]="product.src" alt="">
+          <div style="display: flex; flex-direction: row; gap: 30px; align-content: center; align-items: center;">
+            <p class="el-price">{{ product.price }}₽</p>
+            <div class="buttons">
+              <button (click)="remove(index)" class="btn2">-</button>
+              <p>{{ counts[index] }}</p>
+              <button (click)="add(index)" class="btn2">+</button>
+            </div>
           </div>
         </div>
-      </div>
+      }
     }
+
+    <div class="final-price">
+      <p>Суммарная стоимость: <b>{{ getFinalPrice() }}₽</b></p>
+    </div>
+
+    <button class="btn" (click)="makePayment()"><b>оформить заказ</b></button>
+
+    <div id="payment-form"></div>
   }
-
-  <div class="final-price">
-    <p>Суммарная стоимость: <b>{{getFinalPrice()}}₽</b></p>
-  </div>
-
-  <button class="btn" (click)="makePayment()"><b>оформить заказ</b></button>
-
-  <div id="payment-form"></div>
 </div>

@@ -1,4 +1,8 @@
 .scrolling-container {
-  height: calc(100vh - 100px);
+  height: calc(100% - 80px);
   overflow-y: scroll;
+
+  @media screen and (max-width: 500px) {
+    height: calc(100% - 80px - 80px);
+  }
 }

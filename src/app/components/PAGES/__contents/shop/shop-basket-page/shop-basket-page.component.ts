@@ -3,6 +3,7 @@ import {RouterLink} from "@angular/router";
 import {ServiceService} from "../../../../../services/service.service";
 import {LocalstorageService} from "../../../../../services/localstorage.service";
 import {PaymentService} from "../../../../../services/api/yookassa.service";
+import {getLocaleDateFormat} from "@angular/common";
 
 @Component({
   selector: 'app-shop-basket-page',
@@ -76,4 +77,6 @@ export class ShopBasketPageComponent implements OnInit {
       result += this.counts[i]*this.service.products[i].price;
     return result;
   }
+
+    protected readonly getLocaleDateFormat = getLocaleDateFormat;
 }

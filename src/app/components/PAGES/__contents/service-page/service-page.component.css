@@ -8,10 +8,6 @@ p {
   flex-direction: column;
   justify-content: space-between;
   padding: 0 10px 10px;
-
-  @media screen and (max-width: 1089px) {
-    min-height: calc(100% - 35px - 100px);
-  }
 }
 
 .question > p > svg {

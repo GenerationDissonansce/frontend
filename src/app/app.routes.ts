@@ -13,5 +13,6 @@ export const routes: Routes = [
   {path: 'item/:id', component: ShopItemPageComponent},
   {path: 'about-us', component: AboutUsPageComponent, canActivate: [IsMobileGuard]},
   {path: 'service', component: ServicePageComponent, canActivate: [IsMobileGuard]},
-  {path: 'contact', component: ContactPageComponent, canActivate: [IsMobileGuard]}
+  {path: 'contact', component: ContactPageComponent, canActivate: [IsMobileGuard]},
+  {path: '**', redirectTo: '/', pathMatch: 'full'}
 ];

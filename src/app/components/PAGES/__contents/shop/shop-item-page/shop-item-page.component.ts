@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {ServiceService} from "../../../../../services/service.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {ProductModel} from "../../../../../models/product.model";
 import {LocalstorageService} from "../../../../../services/localstorage.service";
-import {parseDecoratorInputTransformFunction} from "@angular/compiler-cli/src/ngtsc/annotations/directive";
 
 @Component({
   selector: 'app-shop-item-page',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './shop-item-page.component.html',
-  styleUrl: './shop-item-page.component.css'
+  styleUrl: './shop-item-page.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ShopItemPageComponent implements OnInit {
   product!: ProductModel;
@@ -31,6 +31,7 @@ export class ShopItemPageComponent implements OnInit {
   ngOnInit() {
     this.getProduct();
     this.src = this.product.images[this.src_index];
+    console.log(this.product);
   }
 
   chooseSrc(index: number) {

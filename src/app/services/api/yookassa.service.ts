@@ -10,8 +10,8 @@ import { environment} from "../../../environments/environment";
 export class PaymentService {
 
   private apiUrl = environment.apiUrl;
-  private shopId = '429056';
-  private secretKey = 'test_CAhq0Atc4ghfnAaRfLBqs3qUkt61GCMCt4BgjODZXw4';
+  private shopId = environment.shopId;
+  private secretKey = environment.secret_key;
 
   constructor(private http: HttpClient) { }
 

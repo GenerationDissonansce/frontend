@@ -16,10 +16,12 @@
           <div class="card">
             <div class="card-content">
               <img [src]="product.src" alt="">
-              <p>{{ product.name }} ({{ size }})</p>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 30px; align-content: center; align-items: center;">
-              <p class="el-price">{{ product.price * counts[index][size] }}₽</p>
+            <div style=" width: 100%; display: flex; flex-direction: row; gap: 10px 30px; align-content: center; align-items: center; justify-content: flex-end; flex-wrap: wrap">
+              <div style="display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
+                <p style="text-align: end">{{ product.name }} ({{ size }})</p>
+                <p class="el-price">{{ product.price * counts[index][size] }}₽</p>
+              </div>
               <div class="buttons">
                 <button (click)="remove(index, size)" class="btn2">-</button>
                 <p>{{ counts[index][size] }}</p>

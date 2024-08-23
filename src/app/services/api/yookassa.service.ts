@@ -38,4 +38,30 @@ export class PaymentService {
 
     return this.http.post(this.apiUrl, body, { headers });
   }
+
+  func() {
+    fetch('https://api.yookassa.ru/v3/payments', {
+      method: 'POST',
+      headers: {
+        'Idempotence-Key': 'fdmsklfdsmlkfldsmflksdmkflds',
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(`${this.shopId}:${this.secretKey}`)
+      },
+      // body: '{\n        "amount": {\n          "value": "100.00",\n          "currency": "RUB"\n        },\n        "capture": true,\n        "confirmation": {\n          "type": "redirect",\n          "return_url": "https://www.example.com/return_url"\n        },\n        "description": "Заказ №1"\n      }',
+      body: JSON.stringify({
+        'amount': {
+          'value': '100.00',
+          'currency': 'RUB'
+        },
+        'capture': true,
+        'confirmation': {
+          'type': 'redirect',
+          'return_url': 'https://www.example.com/return_url'
+        },
+        'description': '\u0417\u0430\u043A\u0430\u0437 \u21161'
+      })
+    })
+      .then(resp => console.log(resp))
+      .catch(err => console.log(err));
+  }
 }

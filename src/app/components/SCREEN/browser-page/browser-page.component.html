@@ -21,20 +21,20 @@
               </div>
               <div class="content-container">
                 <app-browser-address-container *ngIf="page.name !== 'games'" [page_name]="page.name!"></app-browser-address-container>
-                <div class="content">
+                <div class="content" [id]="'browser-container-' + page.id">
                   <div class="page-content" [style.height]="this.getPageContentHeight()" #scroll_container>
                     @switch (page.name) {
                       @case ('service') {
-                        <app-service-page [page]="page"></app-service-page>
+                        <app-service-page [id]="'browser-content-' + page.id" [page]="page"></app-service-page>
                       }
                       @case ('about us') {
-                        <app-about-us-page [page]="page"></app-about-us-page>
+                        <app-about-us-page [id]="'browser-content-' + page.id" [page]="page"></app-about-us-page>
                       }
                       @case ('clothes') {
-                        <app-shop-main-page [page]="page"></app-shop-main-page>
+                        <app-shop-main-page [id]="'browser-content-' + page.id" [page]="page"></app-shop-main-page>
                       }
                       @default {
-                        <app-contact-page [page]="page"></app-contact-page>
+                        <app-contact-page [id]="'browser-content-' + page.id" [page]="page"></app-contact-page>
                       }
                     }
                   </div>

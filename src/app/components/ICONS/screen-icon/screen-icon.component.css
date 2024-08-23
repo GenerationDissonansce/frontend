@@ -1,4 +1,5 @@
 .icon-container {
+  cursor: pointer;
   width:           calc(var(--screen-icon-size) - 2px);
   height:          calc(var(--screen-icon-size) - 2px);
   position:        absolute;
@@ -24,6 +25,10 @@
 }
 
 .icon-text {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Pixelify Sans", sans-serif;
+  white-space: nowrap;
   height: var(--screen-icon-text-height);
 }
 
@@ -33,6 +38,7 @@
 }
 
 .dragging {
+  cursor: grabbing;
   opacity: .7;
   background-color: var(--hover-icon-bg);
 }

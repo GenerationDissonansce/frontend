@@ -11,9 +11,11 @@ import {PageModel} from "../../../../models/page.model";
 })
 export class BrowserScrollbarComponent implements AfterViewInit {
   @ViewChild('container') container: any;
+  @ViewChild('main_container') main_container: any;
   @ViewChild('icon') icon: any;
   @Input() page!: PageModel;
   private minusy = 0;
+  private percent: number = 0;
 
   ScrollingDown: boolean = false;
   ScrollingUp: boolean = false;
@@ -24,15 +26,52 @@ export class BrowserScrollbarComponent implements AfterViewInit {
     this.updatePageService.scrollbar_subscribers$.subscribe((e:any) => {
       if (e.pageId == this.page.id) {
         const percent = e.percent;
+        this.percent = percent;
         const height = this.container.nativeElement.getBoundingClientRect().height - this.icon.nativeElement.getBoundingClientRect().height;
         const top = Math.max(0,height * percent);
         this.icon.nativeElement.style.top = `${top}px`;
       }
-    })
+    });
+
+    this.updatePageService.subscribers$.subscribe((e: any) => {
+      if (e.pageId === this.page.id) {
+        const height = this.container.nativeElement.getBoundingClientRect().height - this.icon.nativeElement.getBoundingClientRect().height;
+        const top = Math.max(0,height * this.percent);
+        this.icon.nativeElement.style.top = `${top}px`;
+
+        this.HideScrollBar();
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.addListeners();
+    setTimeout(() => {
+      this.HideScrollBar();
+    }, 10);
+  }
+
+  HideScrollBar() {
+    const container = document.getElementById('browser-container-' + this.page.id)!;
+    const content = document.getElementById('browser-content-' + this.page.id)!;
+
+    let containerHeight = container === null ? 0 : container.getBoundingClientRect().height;
+    let contentHeight = content === null ? 0 : content.getBoundingClientRect().height;
+
+    console.log(contentHeight);
+
+    if (containerHeight === 0) containerHeight = 238;
+    if (contentHeight === 0) {
+      if (this.page.name === 'contact') contentHeight = 235;
+      if (this.page.name === 'about us') contentHeight = 164;
+      if (this.page.name === 'clothes') contentHeight = 743.5;
+      if (this.page.name === 'service') contentHeight = 486;
+    }
+
+    if (contentHeight <= containerHeight)
+      this.main_container.nativeElement.style.display = 'none';
+    else
+      this.main_container.nativeElement.style.display = 'flex';
   }
 
   addListeners() {

@@ -12,6 +12,8 @@ export class ServicePageComponent {
   @Input() page!: PageModel;
   texts: string[][] = [
     [
+      '-Есть ли у Вас шоурум?',
+      '-Пока нет, наши футболки висят в шоуруме Steven Rhodes по адресу Большой Трёхсвятительский переулок 2/1с5, Москва.',
       '-Как происходит доставка?',
       '-Доставляем по России CDEK’ом. Обычно это занимает 3-4 дней.',
       '-Как я узнаю, где моя посылка?',
@@ -27,6 +29,8 @@ export class ServicePageComponent {
       '-Да, только если вещь находится в надлежащем качестве. Возврат возможен в течение двух недель.',
     ],
     [
+      '-Do you have a showroom?',
+      '-Not yet, our T-shirts are hanging in the Steven Rhodes showroom at Bolshoy Trekhsvyatitelsky Lane 2/1с5, Moscow.',
       '-How does delivery work?',
       '-We deliver throughout Russia using CDEK. Usually it takes 3-4 days.',
       '-How do I find out where my parcel is?',

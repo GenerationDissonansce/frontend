@@ -17,6 +17,13 @@ export class UpdatePageService {
   public loading_screen_observer = new Subject()
   public loading_screen_subscribers$ = this.loading_screen_observer.asObservable();
 
+  public fullscreen_observer = new Subject()
+  public fullscreen_subscribers$ = this.loading_screen_observer.asObservable();
+
+  FullscreenEmitData(page_size: number[], pageId: number) {
+    this.fullscreen_observer.next({pageId: pageId});
+  }
+
   ResizeEmitData(page_size: number[], pageId: number) {
     this.observer.next({page_size: page_size, type: 'resize', pageId: pageId});
   }

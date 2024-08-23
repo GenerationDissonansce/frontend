@@ -1,4 +1,5 @@
 <div [class.chosen-icon]="icon.is_chosen" class="icon-container" #icon_container>
   <img class="icon-img" [src]="icon.url" alt="icon image">
-  <img class="icon-text" [src]="icon.name" alt="icon text image">
+<!--   <img class="icon-text" [src]="icon.name" alt="icon text image"> -->
+  <p class="icon-text">{{icon.name}}</p>
 </div>

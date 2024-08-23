@@ -12,13 +12,23 @@
     <swiper-slide><img class="swiper-image" [src]="product.images[2]"></swiper-slide>
   </swiper-container>
 
+  <div class="desc">
+    <p>Размеры:
+      <span class="desc-button" [class.chosen]="chosen_type === 'S'" (click)="chooseType('S')">S</span>
+      <span class="desc-button" [class.chosen]="chosen_type === 'M'" (click)="chooseType('M')">M</span>
+      <span class="desc-button" [class.chosen]="chosen_type === 'L'" (click)="chooseType('L')">L</span>
+      <span class="desc-button" [class.chosen]="chosen_type === 'XL'" (click)="chooseType('XL')">XL</span>
+    </p>
+    <p>Сделана из 100% хлопка плотностью 250 г/м². Выглядит до боли обычной, пока не заметишь монету на спине. Кстати, её можно снять и прикрепить обратно, она на липучке.</p>
+  </div>
+
   <p style="margin-top: 10px!important;" class="price">Стоимость: {{ product.price }}₽</p>
-  @if (count == 0 && product.valid) {
+  @if (count[chosen_type] == 0 && product.valid) {
     <button style="margin-top: 10px!important;" (click)="add()" class="basket btn">в корзину</button>
   } @else if (product.valid) {
     <div style="margin-top: 10px!important;" class="buttons">
       <button (click)="remove()" class="btn2">-</button>
-      <p>{{ count }}</p>
+      <p>{{ count[chosen_type] }}</p>
       <button (click)="add()" class="btn2">+</button>
     </div>
     <a routerLink="/basket" style="margin-top: 5px;">

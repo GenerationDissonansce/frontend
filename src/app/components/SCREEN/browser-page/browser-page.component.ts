@@ -14,6 +14,7 @@ import {AboutUsPageComponent} from "../../PAGES/__contents/about-us-page/about-u
 import {ContactPageComponent} from "../../PAGES/__contents/contact-page/contact-page.component";
 import {ClothesPageComponent} from "../../PAGES/__contents/shop/clothes-page/clothes-page.component";
 import {ShopMainPageComponent} from "../../PAGES/__contents/shop/shop-main-page/shop-main-page.component";
+import { CookiePageComponent } from "../../PAGES/__contents/cookie-page/cookie-page.component";
 
 @Component({
   selector: 'app-browser-page',
@@ -28,7 +29,8 @@ import {ShopMainPageComponent} from "../../PAGES/__contents/shop/shop-main-page/
     AboutUsPageComponent,
     ContactPageComponent,
     ClothesPageComponent,
-    ShopMainPageComponent
+    ShopMainPageComponent,
+    CookiePageComponent
   ],
   templateUrl: './browser-page.component.html',
   styleUrl: './browser-page.component.css'
@@ -116,7 +118,7 @@ export class BrowserPageComponent implements AfterViewInit {
         let left = Math.max(0, Math.min(e.clientX - this.minus_x - containerPos.left, containerPos.width - pagePos.width));
         this.page_container.nativeElement.style.top = `${top}px`;
         this.page_container.nativeElement.style.left = `${left}px`;
-        this.browser.MovePage(top, left);
+        this.browser.MovePage(this.page.id, top, left);
       }
     }
     let mouse_up_listen = () => {

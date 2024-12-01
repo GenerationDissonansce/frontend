@@ -3,6 +3,7 @@ import {PageModel} from "../models/page.model";
 import {ScreenIconModel} from "../models/screen-icon.model";
 import {Subject} from "rxjs";
 import {UpdatePageService} from "./update-page.service";
+import { ScreenSizeService } from "./screen-size.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,12 @@ export class BrowserService {
   }
 
   constructor(
+    private screenSizeService: ScreenSizeService,
     private updatePagesService: UpdatePageService,
   ) {
+    const window_width = this.screenSizeService.width;
+    const window_height = this.screenSizeService.height;
+    this.pages.push({ name: 'cookie', z_index: 1000, top: window_height - 230, height: 200, width: 400, left: window_width - 430, id: 1000, is_full_screen: false})
   }
 
   ChoosePage(page: PageModel) {
@@ -36,9 +41,16 @@ export class BrowserService {
 
   async AddPage(icon: ScreenIconModel) {
     if (this.pages.length >= this.max_pages_count) {
-      this.updatePagesService.ClosePage(this.pages[0].id);
+      let pageId = 0;
+      for (const page of this.pages) {
+        if (page.name !== 'cookie') {
+          pageId = page.id;
+          this.updatePagesService.ClosePage(page.id);
+          break;
+        }
+      }
       await this.sleep(300);
-      this.pages.shift();
+      this.pages = this.pages.filter(page => page.id !== pageId);
     }
     for (let i = 0; i < this.pages.length; i++) {
       this.pages[i].z_index = 0;
@@ -91,9 +103,13 @@ export class BrowserService {
     this.pages[id].height = height;
   }
 
-  MovePage(top: number, left: number) {
-    this.pages[this.pages.length - 1].top = top;
-    this.pages[this.pages.length - 1].left = left;
+  MovePage(page_id: number, top: number, left: number) {
+    for (let i = 0; i < this.pages.length; i++) {
+      if (this.pages[i].id === page_id) {
+        this.pages[i].top = top;
+        this.pages[i].left = left;
+      }
+    }
   }
 
   async Close(id: number) {

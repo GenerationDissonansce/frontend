@@ -2,23 +2,27 @@
   <div class="close">
     <img (click)="Close()" class="close-icon" style="z-index: 305; cursor:pointer;" src="assets/browser/close-icon.svg">
   </div>
+  @if (page_name !== 'cookie') {
   <div class="full-screen">
-    <img (click)="FullScreen()" src="assets/browser/full-screen-icon.svg" style="z-index: 305; cursor:pointer;  ">
+      <img (click)="FullScreen()" src="assets/browser/full-screen-icon.svg" style="z-index: 305; cursor:pointer;  ">
   </div>
+  } @else {
+    <div class="full-screen" style="width: 5px;"></div>
+  }
   <div class="name">
     <div class="background">
       <div class="line" style="height: 1px; background: #9f9f9f;"></div>
-      <div class="line" style="height: 1px; background: #D6D6D6;"></div>
-      <div class="line" style="height: 1px; background: #ADADAD;"></div>
-      <div class="line" style="height: 1px; background: #D1D1D1;"></div>
-      <div class="line" style="height: 1px; background: #B3B3B3;"></div>
-      <div class="line" style="height: 1px; background: #C9C9C9;"></div>
-      <div class="line" style="height: 2px; background: #BFBFBF;"></div>
-      <div class="line" style="height: 1px; background: #C8C8C8;"></div>
-      <div class="line" style="height: 1px; background: #BBBBBB;"></div>
-      <div class="line" style="height: 1px; background: #A9A9AB;"></div>
-      <div class="line" style="height: 1px; background: #DADADA;"></div>
-      <div class="line" style="height: 1px; background: #C8C8C8;"></div>
+      <div class="line" style="height: 1px; background: #d6d6d6;"></div>
+      <div class="line" style="height: 1px; background: #adadad;"></div>
+      <div class="line" style="height: 1px; background: #d1d1d1;"></div>
+      <div class="line" style="height: 1px; background: #b3b3b3;"></div>
+      <div class="line" style="height: 1px; background: #c9c9c9;"></div>
+      <div class="line" style="height: 2px; background: #bfbfbf;"></div>
+      <div class="line" style="height: 1px; background: #c8c8c8;"></div>
+      <div class="line" style="height: 1px; background: #bbbbbb;"></div>
+      <div class="line" style="height: 1px; background: #a9a9ab;"></div>
+      <div class="line" style="height: 1px; background: #dadada;"></div>
+      <div class="line" style="height: 1px; background: #c8c8c8;"></div>
     </div>
   </div>
 </div>

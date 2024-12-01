@@ -58,7 +58,6 @@ export class BrowserScrollbarComponent implements AfterViewInit {
     let containerHeight = container === null ? 0 : container.getBoundingClientRect().height;
     let contentHeight = content === null ? 0 : content.getBoundingClientRect().height;
 
-    console.log(contentHeight);
 
     if (containerHeight === 0) containerHeight = 238;
     if (contentHeight === 0) {
@@ -108,7 +107,6 @@ export class BrowserScrollbarComponent implements AfterViewInit {
     if (!this.ScrollingDown) return;
     const containerPos = this.container.nativeElement.getBoundingClientRect();
     const iconPos = this.icon.nativeElement.getBoundingClientRect();
-    console.log(iconPos.top, containerPos.top);
     let percent = (iconPos.top - containerPos.top - 1) / (containerPos.height - iconPos.height);
 
     percent = Math.min(percent + 0.01, 1);

@@ -22,13 +22,14 @@ import {PageModel} from "../../../models/page.model";
 })
 export class ScreenContentComponent implements AfterViewInit {
   @ViewChild('container') container: any;
-  public pages: PageModel[] = [];
+  public pages: PageModel[];
 
   constructor(
     public screen_icons_service: ScreenIconsService,
     public browser_service: BrowserService,
   ) {
     this.SubscribeToPagesChanges();
+    this.pages = this.browser_service.pages;
   }
 
   ngAfterViewInit() {

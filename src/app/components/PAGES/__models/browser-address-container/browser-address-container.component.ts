@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-browser-address-container',
@@ -7,6 +7,9 @@ import {Component, Input} from '@angular/core';
   templateUrl: './browser-address-container.component.html',
   styleUrl: './browser-address-container.component.css'
 })
-export class BrowserAddressContainerComponent {
+export class BrowserAddressContainerComponent implements AfterViewInit {
   @Input() page_name!: string;
+
+  ngAfterViewInit() {
+  }
 }

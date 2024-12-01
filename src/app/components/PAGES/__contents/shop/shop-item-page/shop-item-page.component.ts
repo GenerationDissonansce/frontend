@@ -38,12 +38,10 @@ export class ShopItemPageComponent implements OnInit {
   ngOnInit() {
     this.getProduct();
     this.src = this.product.images[this.src_index];
-    console.log(this.product);
   }
 
   chooseType(_type: string) {
     this.chosen_type = _type;
-    console.log(this.chosen_type);
   }
 
   getProduct(): void {

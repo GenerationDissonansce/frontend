@@ -15,53 +15,22 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  createPayment(amount: string, currency: string, returnUrl: string, description: string): Observable<any> {
-    const idempotenceKey = uuidv4();
-    const headers = new HttpHeaders({
-      'Authorization': 'Basic ' + btoa(`${this.shopId}:${this.secretKey}`),
-      'Idempotence-Key': idempotenceKey,
-      'Content-Type': 'application/json'
-    });
-
-    const body = {
-      amount: {
-        value: amount,
-        currency: currency
-      },
-      capture: true,
-      confirmation: {
-        type: 'redirect',
-        return_url: returnUrl
-      },
-      description: description
-    };
-
-    return this.http.post(this.apiUrl, body, { headers });
-  }
-
-  func() {
-    fetch('https://api.yookassa.ru/v3/payments', {
+  getDeliveryPrice(address: string) {
+    return fetch(environment.cdekApi, {
       method: 'POST',
       headers: {
-        'Idempotence-Key': 'fdmsklfdsmlkfldsmflksdmkflds',
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(`${this.shopId}:${this.secretKey}`)
       },
-      // body: '{\n        "amount": {\n          "value": "100.00",\n          "currency": "RUB"\n        },\n        "capture": true,\n        "confirmation": {\n          "type": "redirect",\n          "return_url": "https://www.example.com/return_url"\n        },\n        "description": "Заказ №1"\n      }',
       body: JSON.stringify({
-        'amount': {
-          'value': '100.00',
-          'currency': 'RUB'
+        'type': 1,
+        'from_location': {
+          'address': 'Ulitsa Dmitriya Donskogo 11/1, Brest, Brest Region 224012, Belarus'
         },
-        'capture': true,
-        'confirmation': {
-          'type': 'redirect',
-          'return_url': 'https://www.example.com/return_url'
+        'to_location': {
+          'address': address
         },
-        'description': '\u0417\u0430\u043A\u0430\u0437 \u21161'
+        'packages': [{ 'weight': 100 }]
       })
     })
-      .then(resp => console.log(resp))
-      .catch(err => console.log(err));
   }
 }

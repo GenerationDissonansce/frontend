@@ -33,6 +33,9 @@
                       @case ('clothes') {
                         <app-shop-main-page [id]="'browser-content-' + page.id" [page]="page"></app-shop-main-page>
                       }
+                      @case ('cookie') {
+                        <app-cookie-page [page]="page"></app-cookie-page>
+                      }
                       @default {
                         <app-contact-page [id]="'browser-content-' + page.id" [page]="page"></app-contact-page>
                       }

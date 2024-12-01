@@ -1,5 +1,5 @@
 <div class="top-bar">
-  <a routerLink="">
+  <a (click)="backClicked()">
     <p class="back"><i class="arrow left"></i> Back</p>
   </a>
 </div>
@@ -33,11 +33,41 @@
       }
     }
 
+<!--     <div class="delivery-form"> -->
+<!--       <p>Заполните форму для расчета стоимости доставки</p> -->
+<!--       <label> -->
+<!--         <p>ФИО заказчика</p> -->
+<!--         <input [(ngModel)]="deliveryFIO" type="text"> -->
+<!--       </label> -->
+
+<!--       <label> -->
+<!--         <p>Телефон заказчика</p> -->
+<!--         <input [(ngModel)]="deliveryPhone" type="tel"> -->
+<!--       </label> -->
+
+<!--       <label> -->
+<!--         <p>Почта заказчика</p> -->
+<!--         <input [(ngModel)]="deliveryEmail" type="email"> -->
+<!--       </label> -->
+
+<!--       <label> -->
+<!--         <p>Адрес доставки</p> -->
+<!--         <input [(ngModel)]="deliveryAddress" type="text"> -->
+<!--       </label> -->
+
+<!--       <button (click)="getDeliveryPrice()">Рассчитать</button> -->
+<!--     </div> -->
+
+    <div style="width: 100%; display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
+      <p style="text-align: end">Доставка</p>
+      <p class="el-price">600₽</p>
+    </div>
+
     <div class="final-price">
       <p>Суммарная стоимость: <b>{{ getFinalPrice() }}₽</b></p>
     </div>
 
-    <button class="btn" (click)="makePayment()"><b>оформить заказ</b></button>
+    <button class="btn"><b>Оформить заказ</b></button>
 
     <div id="payment-form"></div>
   }

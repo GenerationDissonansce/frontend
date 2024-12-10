@@ -45,7 +45,7 @@ export class ShopItemPageComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = 0;
     this.product = this.service.products[id];
     this.key = 'item' + id;
 

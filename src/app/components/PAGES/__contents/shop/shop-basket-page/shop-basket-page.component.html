@@ -5,7 +5,7 @@
 </div>
 
 <div class="content">
-  @if (getFinalPrice() === 0) {
+  @if (getFinalPrice() === deliveryCost) {
     <div class="flex-container">
       <p>Корзина пуста</p>
     </div>
@@ -31,6 +31,17 @@
           </div>
         }
       }
+
+        <div style="width: 100%; display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
+            <p style="text-align: end">Доставка</p>
+            <p class="el-price">600₽</p>
+        </div>
+
+        <div class="final-price">
+            <p>Суммарная стоимость: <b>{{ getFinalPrice() }}₽</b></p>
+        </div>
+
+        <button class="btn"><b>Оформить заказ</b></button>
     }
 
 <!--     <div class="delivery-form"> -->
@@ -57,18 +68,5 @@
 
 <!--       <button (click)="getDeliveryPrice()">Рассчитать</button> -->
 <!--     </div> -->
-
-    <div style="width: 100%; display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
-      <p style="text-align: end">Доставка</p>
-      <p class="el-price">600₽</p>
-    </div>
-
-    <div class="final-price">
-      <p>Суммарная стоимость: <b>{{ getFinalPrice() }}₽</b></p>
-    </div>
-
-    <button class="btn"><b>Оформить заказ</b></button>
-
-    <div id="payment-form"></div>
   }
 </div>

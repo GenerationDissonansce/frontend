@@ -25,7 +25,7 @@ p {
   align-content: center;
   align-items: center;
   z-index: 2;
-  background: white;
+  margin-bottom: 5px;
 }
 
 .card {
@@ -51,12 +51,12 @@ p {
   gap: 3px;
 }
 
-.tb-text:hover {
-  color: #636363!important;
-}
-
 .chosen-text {
   color: black!important;
+
+  @media screen and (max-width: 1089px) {
+    color: white!important;
+  }
 }
 
 .top-bar > p {

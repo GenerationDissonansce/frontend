@@ -27,7 +27,7 @@
 .icon-text {
   font-size: 12px;
   font-weight: 500;
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: "pixeloid", sans-serif;
   white-space: nowrap;
   height: var(--screen-icon-text-height);
 }

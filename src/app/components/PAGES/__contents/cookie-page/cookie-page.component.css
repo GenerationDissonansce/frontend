@@ -1,0 +1,10 @@
+.approve {
+  width: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px 10px;
+  margin-top: 10px;
+}

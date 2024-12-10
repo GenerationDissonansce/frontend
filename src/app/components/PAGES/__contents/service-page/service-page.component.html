@@ -5,19 +5,19 @@
 </div>
 <div class="content">
   <div>
-    @for (text of texts[index]; track index; let i = $index) {
-      @if (i % 2 == 0) {
-        <div class="question">
-          <p>
-            {{ text }}
-          </p>
-        </div>
-      } @else {
-        <div class="card">
-          <p>{{text}}</p>
-        </div>
+      @for (text of texts[index]; track index; let i = $index) {
+          @if (i % 2 == 0) {
+              <div class="question">
+                  <p>
+                      {{ text }}
+                  </p>
+              </div>
+          } @else {
+              <div class="card">
+                  <p>{{ text }}</p>
+              </div>
+          }
       }
-    }
   </div>
 
   <p class="ip-text">

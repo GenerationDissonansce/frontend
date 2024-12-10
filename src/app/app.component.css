@@ -65,4 +65,8 @@
   .laptop-version { display: none; }
 
   .mobile-version { display: block; }
+
+  body {
+    background: black;
+  }
 }

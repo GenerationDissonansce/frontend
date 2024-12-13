@@ -1,28 +1,32 @@
 <div class="top-bar">
-  <p [class.chosen-text]="index === 1" class="tb-text" (click)="index = 1">EN</p>
-  <p>/</p>
-  <p [class.chosen-text]="index === 0" class="tb-text" (click)="index = 0">RU</p>
+    <a style="text-decoration: none;" (click)="open()"><p class="mobile-back">Back</p></a>
+    <a style="text-decoration: none;" routerLink=""><p class="back">Back</p></a>
+    <div style="width: max-content; display: flex; flex-direction: row; align-items: center;">
+        <p [class.chosen-text]="index === 1" class="tb-text" (click)="index = 1">EN</p>
+        <p>/</p>
+        <p [class.chosen-text]="index === 0" class="tb-text" (click)="index = 0">RU</p>
+    </div>
 </div>
 <div class="content">
-  <div>
-      @for (text of texts[index]; track index; let i = $index) {
-          @if (i % 2 == 0) {
-              <div class="question">
-                  <p>
-                      {{ text }}
-                  </p>
-              </div>
-          } @else {
-              <div class="card">
-                  <p>{{ text }}</p>
-              </div>
-          }
-      }
-  </div>
+    <div>
+        @for (text of texts[index]; track index; let i = $index) {
+            @if (i % 2 == 0) {
+                <div class="question">
+                    <p>
+                        {{ text }}
+                    </p>
+                </div>
+            } @else {
+                <div class="card">
+                    <p>{{ text }}</p>
+                </div>
+            }
+        }
+    </div>
 
-  <p class="ip-text">
-    ИП КОЗЛОВСКИЙ ВЛАДИМИР ВИКТОРОВИЧ<br>
-    ИНН клиента: 7702070139<br>
-    ОГРНИП: 307482123600027<br>
-  </p>
+    <p class="ip-text">
+        ИП КОЗЛОВСКИЙ ВЛАДИМИР ВИКТОРОВИЧ<br>
+        ИНН клиента: 7702070139<br>
+        ОГРНИП: 307482123600027<br>
+    </p>
 </div>

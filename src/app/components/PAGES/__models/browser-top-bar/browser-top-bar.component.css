@@ -47,15 +47,17 @@
 }
 
 .full-screen {
-  width:            15px;
-  height:           13px;
-  position:         relative;
+  position: absolute;
+  right: 70px;
+  height:           11px;
+  padding-bottom: 2px;
   background-color: #d4d4d6;
 }
 
 .full-screen > img {
   position: absolute;
   top:      0;
+  height: 100%;
   left:     3px;
   transition-duration: .3s;
 }

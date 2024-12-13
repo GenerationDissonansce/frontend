@@ -5,38 +5,33 @@
     height:          100vh;
     flex-direction:  row;
     justify-content: flex-end;
-    display:         none;
+    display:         flex;
     right:           0;
     z-index:         1000;
-}
-
-.background {
-    background:          rgba(0, 0, 0, .4);
-    position:            absolute;
-    top:                 0;
-    left:                0;
-    width:               100vw;
-    height:              100vh;
-    opacity:             0;
-    transition-duration: .3s;
+    overflow-y:      scroll;
 }
 
 .content {
     position:            absolute;
     top:                 0;
-    right:               -100%;
+    right:               0;
     width:               100vw;
-    height:              100vh;
+    height:              fit-content;
+    min-height:          100vh;
     background:          black;
     font-size:           20px;
     display:             flex;
     flex-direction:      column;
     align-items:         center;
     justify-content:     space-between;
-    padding:             50px 20px;
+    padding:             50px 20px 80px;
     max-width:           100vw;
-    gap:                 10px;
+    gap:                 30px;
     transition-duration: .3s;
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        padding-bottom: 120px;
+    }
 
     img {
         width: 200px;

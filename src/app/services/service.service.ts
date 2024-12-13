@@ -6,7 +6,7 @@ import {ProductModel} from "../models/product.model";
 })
 export class ServiceService {
   public products: ProductModel[] = [
-    {src: 'assets/products/t-shirt-1.JPEG', name:'WHITE COIN TEE', price: 4490, images: ['assets/products/t-shirt-1.JPEG', 'assets/products/t-shirt-2.JPEG', 'assets/products/t-shirt-3.JPEG'], valid: true},
+    {src: 'assets/products/t-shirt-1.png', name:'WHITE COIN TEE', price: 4490, images: ['assets/products/t-shirt-3.png', 'assets/products/t-shirt-1.png', 'assets/products/t-shirt-2.png'], valid: true},
   ];
 
   constructor() {

@@ -70,8 +70,8 @@ export class BrowserService {
       name: '',
       top: top,
       left: left,
-      width: 500,
-      height: 300,
+      width: icon.id===3? Math.min(800, this.screenSizeService.width - left) : 500,
+      height: icon.id===3? Math.min(500, this.screenSizeService.height - top) : 300,
       z_index: 1,
       is_full_screen: false,
     }

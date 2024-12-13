@@ -3,6 +3,7 @@ import { ServiceService } from "../../../../../services/service.service";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { ProductModel } from "../../../../../models/product.model";
 import { LocalstorageService } from "../../../../../services/localstorage.service";
+import { RightBarComponent } from "../../../../MOBILE/right-bar/right-bar.component";
 
 @Component({
   selector: 'app-shop-item-page',
@@ -39,6 +40,10 @@ export class ShopItemPageComponent implements OnInit {
     this.getProduct();
     this.src = this.product.images[this.src_index];
   }
+  
+  open() {
+    RightBarComponent.Open();
+  }
 
   chooseType(_type: string) {
     this.chosen_type = _type;
@@ -65,4 +70,6 @@ export class ShopItemPageComponent implements OnInit {
     this.count[this.chosen_type]++;
     this.localstorage.set(this.key + this.chosen_type, String(this.count[this.chosen_type]));
   }
+    
+    protected readonly window = window;
 }

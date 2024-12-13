@@ -47,6 +47,10 @@ body {
     }
 }
 
+button {
+    font-family: var(--ff-ibm-mono), sans-serif;
+}
+
 li {
     list-style-type: none;
 }

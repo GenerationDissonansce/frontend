@@ -1,7 +1,6 @@
-<div class="top-bar">
-  <a (click)="backClicked()">
-    <p class="back"><i class="arrow left"></i> Back</p>
-  </a>
+<div class="back-bar">
+  <a (click)="open()"><p class="back-mobile">Back</p></a>
+  <a routerLink=""><p class="back">Back</p></a>
 </div>
 
 <div class="content">
@@ -10,28 +9,51 @@
       <p>Корзина пуста</p>
     </div>
   } @else {
-    @for (product of service.products; track service.products; let index = $index) {
-      @for (size of sizes; track sizes) {
-        @if (counts[index][size] !== 0) {
-          <div class="card">
-            <div class="card-content">
-              <img [src]="product.src" alt="">
-            </div>
-            <div style=" width: 100%; display: flex; flex-direction: row; gap: 10px 30px; align-content: center; align-items: center; justify-content: flex-end; flex-wrap: wrap">
-              <div style="display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
-                <p style="text-align: end">{{ product.name }} ({{ size }})</p>
-                <p class="el-price">{{ product.price * counts[index][size] }}₽</p>
-              </div>
-              <div class="buttons">
-                <button (click)="remove(index, size)" class="btn2">-</button>
-                <p>{{ counts[index][size] }}</p>
-                <button (click)="add(index, size)" class="btn2">+</button>
-              </div>
-            </div>
-          </div>
-        }
-      }
+      <div class="products">
+          @for (product of service.products; track service.products; let index = $index) {
+              @for (size of sizes; track sizes) {
+                  @if (counts[index][size] !== 0) {
+                      <div class="card">
+                          <div class="card-content">
+                              <img [src]="product.src" alt="">
+                          </div>
+                          <div style=" width: 100%; display: flex; flex-direction: row; gap: 10px 30px; align-content: center; align-items: center; justify-content: flex-end; flex-wrap: wrap">
+                              <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end">
+                                  <p style="text-align: end">{{ product.name }} ({{ size }})</p>
+                                  <p class="el-price">{{ product.price * counts[index][size] }}₽</p>
+                              </div>
+                              <div class="buttons">
+                                  <button (click)="remove(index, size)" class="btn2">-</button>
+                                  <p>{{ counts[index][size] }}</p>
+                                  <button (click)="add(index, size)" class="btn2">+</button>
+                              </div>
+                          </div>
+                      </div>
+                  }
+              }
+          }
+      </div>
+<!--       <div class="delivery-form"> -->
+<!--           <label id="delivery-name"> -->
+<!--               <p>Имя</p> -->
+<!--               <input> -->
+<!--           </label> -->
+<!--           <label id="delivery-surname"> -->
+<!--               <p>Фамилия</p> -->
+<!--               <input> -->
+<!--           </label> -->
+<!--           <label> -->
+<!--               <p>Телефон</p> -->
+<!--               <input id="delivery-phone"> -->
+<!--           </label> -->
+<!--           <div id="cdek-map" style="width:100%;height:600px"></div> -->
+<!--       </div> -->
+  }
+</div>
 
+
+@if (getFinalPrice() !== deliveryCost) {
+    <div class="purchase">
         <div style="width: 100%; display: flex; flex-direction: row; gap: 10px; flex-wrap: wrap; justify-content: flex-end">
             <p style="text-align: end">Доставка</p>
             <p class="el-price">600₽</p>
@@ -42,31 +64,5 @@
         </div>
 
         <button class="btn"><b>Оформить заказ</b></button>
-    }
-
-<!--     <div class="delivery-form"> -->
-<!--       <p>Заполните форму для расчета стоимости доставки</p> -->
-<!--       <label> -->
-<!--         <p>ФИО заказчика</p> -->
-<!--         <input [(ngModel)]="deliveryFIO" type="text"> -->
-<!--       </label> -->
-
-<!--       <label> -->
-<!--         <p>Телефон заказчика</p> -->
-<!--         <input [(ngModel)]="deliveryPhone" type="tel"> -->
-<!--       </label> -->
-
-<!--       <label> -->
-<!--         <p>Почта заказчика</p> -->
-<!--         <input [(ngModel)]="deliveryEmail" type="email"> -->
-<!--       </label> -->
-
-<!--       <label> -->
-<!--         <p>Адрес доставки</p> -->
-<!--         <input [(ngModel)]="deliveryAddress" type="text"> -->
-<!--       </label> -->
-
-<!--       <button (click)="getDeliveryPrice()">Рассчитать</button> -->
-<!--     </div> -->
-  }
-</div>
+    </div>
+}

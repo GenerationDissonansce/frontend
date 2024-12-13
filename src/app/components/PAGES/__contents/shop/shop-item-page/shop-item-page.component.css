@@ -39,14 +39,17 @@
 }
 
 .content {
-    margin-top:      50px;
+    margin-top:      20px;
     position:        relative;
     width:           100%;
     display:         flex;
-    flex-direction:  column;
+    flex-direction:  row;
+    flex-wrap:       wrap;
     justify-content: center;
     align-content:   center;
     align-items:     center;
+    gap: 0 40px;
+    padding: 0 20px;
 }
 
 img {
@@ -187,15 +190,29 @@ img {
     position:        relative;
     display:         flex;
     flex-direction:  row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items:     center;
     align-content:   center;
+    .back-mobile { display: none; }
+    @media screen and (max-width: 1089px) {
+        justify-content: space-between;
+        .back-mobile { display: block; }
+    }
+
+    img {
+        filter: invert(1);
+        height: 30px;
+        width:  30px;
+        @media screen and (max-width: 1089px) {
+            filter: invert(0);
+        }
+    }
 }
 
 .mySwiper {
-    width:         500px;
-    height:        400px;
-    max-width:     100%;
+    width: 350px;
+    max-width: 100%;
+    height:        fit-content;
     z-index:       1;
     border-radius: 16px;
 }
@@ -208,11 +225,19 @@ img {
 }
 
 .desc {
+    flex: 1 1 300px;
+    height: fit-content;
     max-width:      400px;
     margin:         30px 0;
     display:        flex;
     flex-direction: column;
     gap:            20px;
+}
+
+.swiper {
+    position: relative;
+    display: flex;
+    flex: 0 1 300px;         /* Grow and shrink, with a base width of 200px */
 }
 
 .desc-button {

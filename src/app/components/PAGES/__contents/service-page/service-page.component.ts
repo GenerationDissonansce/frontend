@@ -1,10 +1,14 @@
 import {Component, Input, ViewChildren} from '@angular/core';
 import {PageModel} from "../../../../models/page.model";
+import { RouterLink } from "@angular/router";
+import { RightBarComponent } from "../../../MOBILE/right-bar/right-bar.component";
 
 @Component({
   selector: 'app-service-page',
   standalone: true,
-  imports: [],
+    imports: [
+        RouterLink
+    ],
   templateUrl: './service-page.component.html',
   styleUrl: './service-page.component.css'
 })
@@ -47,4 +51,8 @@ export class ServicePageComponent {
     ],
   ]
   index: number = 0;
+  
+  open() {
+    RightBarComponent.Open();
+  }
 }

@@ -1,9 +1,12 @@
 <div class="container" id="right-bar-container">
-    <div class="background" id="right-bar-background"></div>
     <div class="content" id="right-bar-content">
+        <svg (click)="interact()" class="cross" xmlns="http://www.w3.org/2000/svg" fill="white" xml:space="preserve"
+             width="30"
+             height="30" viewBox="0 0 24 24"><path d="m13.414 12 6.01-6.01a.999.999 0 1 0-1.414-1.414L12 10.586l-6.01-6.01A.999.999 0 1 0 4.576 5.99l6.01 6.01-6.01 6.01a.999.999 0 1 0 1.414 1.414l6.01-6.01 6.01 6.01a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L13.414 12z"/>
+        </svg>
 
-        <div>
-            <img src="assets/people-logo.png">
+        <div style="display: flex; flex-direction: column; gap: 5px; align-items: center;">
+            <a (click)="interact()" routerLink=""><img src="assets/people-logo.png"></a>
             <p>{{ currentDate }}</p>
         </div>
 
@@ -14,12 +17,11 @@
             <p class="link" (click)="interact()" routerLink="service">Service</p>
             <p class="link" (click)="interact()" routerLink="basket">Basket</p>
         </div>
-        <svg (click)="interact()" class="cross" xmlns="http://www.w3.org/2000/svg" fill="white" xml:space="preserve"
-             width="30"
-             height="30" viewBox="0 0 24 24"><path d="m13.414 12 6.01-6.01a.999.999 0 1 0-1.414-1.414L12 10.586l-6.01-6.01A.999.999 0 1 0 4.576 5.99l6.01 6.01-6.01 6.01a.999.999 0 1 0 1.414 1.414l6.01-6.01 6.01 6.01a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L13.414 12z"/>
-        </svg>
 
-        <div>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+            <p style="text-align: center; display: flex; flex-direction: row; align-items: center; gap: 10px;">
+                <a href="https://www.instagram.com/dissonans_pokoleniy?igsh=MTI1bmp1bmJqcW5yeg==">&#64; Instagram</a>
+            </p>
             <p style="text-align: center;">Copyright © 2024 Dissonance of Generations. All rights reserved</p>
         </div>
     </div>

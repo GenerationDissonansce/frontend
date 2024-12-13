@@ -24,7 +24,7 @@ export class BrowserService {
   ) {
     const window_width = this.screenSizeService.width;
     const window_height = this.screenSizeService.height;
-    this.pages.push({ name: 'cookie', z_index: 1000, top: window_height - 230, height: 200, width: 400, left: window_width - 430, id: 1000, is_full_screen: false})
+    this.pages.push({ name: 'cookie', z_index: 1000, top: window_height - 230, height: 200, width: 500, left: window_width - 530, id: 1000, is_full_screen: false})
   }
 
   ChoosePage(page: PageModel) {

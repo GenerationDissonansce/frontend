@@ -7,4 +7,9 @@
   justify-content: center;
   padding: 5px 10px;
   margin-top: 10px;
+  transition-duration: .3s;
+
+  &:hover {
+    background: #3c3c3c;
+  }
 }

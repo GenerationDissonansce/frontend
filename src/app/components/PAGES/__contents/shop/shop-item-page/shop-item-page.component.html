@@ -19,14 +19,15 @@
     <!--     </div> -->
 
     <div class="desc">
+        <p>Сделана из 100% хлопка плотностью 250 г/м². Выглядит до боли обычной, пока не заметишь монету на спине.
+            Кстати, её можно снять и прикрепить обратно, она на липучке.</p>
+
         <p style="white-space: nowrap">Размеры:
             <span class="desc-button" [class.chosen]="chosen_type === 'S'" (click)="chooseType('S')">S</span>
             <span class="desc-button" [class.chosen]="chosen_type === 'M'" (click)="chooseType('M')">M</span>
             <span class="desc-button" [class.chosen]="chosen_type === 'L'" (click)="chooseType('L')">L</span>
             <span class="desc-button" [class.chosen]="chosen_type === 'XL'" (click)="chooseType('XL')">XL</span>
         </p>
-        <p>Сделана из 100% хлопка плотностью 250 г/м². Выглядит до боли обычной, пока не заметишь монету на спине.
-            Кстати, её можно снять и прикрепить обратно, она на липучке.</p>
 
         <p style="margin-top: 10px!important;" class="price">Стоимость: {{ product.price }}₽</p>
         @if (count[chosen_type] == 0 && product.valid) {

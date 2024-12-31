@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ import { RouterLink } from "@angular/router";
 })
 export class RightBarComponent {
     static is_opened: boolean = true;
-    currentDate: string = '';
+    currentDate = signal<string>('');
     
     constructor() {
         this.setCurrentDate();
@@ -20,9 +20,12 @@ export class RightBarComponent {
     
     setCurrentDate() {
         const date = new Date();
-        this.currentDate = `${String(date.getDay()).padStart(2,'0')}/${String(date.getMonth()).padStart(2,'0')}/${date.getFullYear()} ${String(date.getHours()%12).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}${date.getHours()>12?'pm':'am'} MSK`
         
-        setTimeout(() => this.setCurrentDate(), 1000);
+        const date_string = `${ String(date.getDate()).padStart(2, '0') }/${ String(date.getMonth() + 1).padStart(2, '0') }/${ date.getFullYear() } ${ String((date.getUTCHours() + 3) % 12).padStart(2, '0') }:${ String(date.getMinutes()).padStart(2, '0') }${ date.getHours() > 12 ? 'pm' : 'am' } MSK`;
+        
+        this.currentDate.set(date_string);
+        
+        setTimeout(() => this.setCurrentDate(), 60*1000);
     }
     
     static Open() {

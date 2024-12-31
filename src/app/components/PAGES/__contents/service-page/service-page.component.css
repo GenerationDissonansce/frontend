@@ -50,11 +50,10 @@ p {
     padding:         5px 10px;
     gap:             3px;
     a { text-decoration: none; }
-    .back-mobile { display: none; }
+    .mobile-back { display: none; }
     @media screen and (max-width: 1089px) {
         display: flex;
-        .back-mobile { display: block; }
-        .back { display: none; }
+        .mobile-back { display: block; }
     }
 }
 

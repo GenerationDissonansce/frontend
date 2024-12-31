@@ -22,11 +22,11 @@ export class ShopBasketPageComponent implements OnInit, AfterViewInit {
     counts: any[] = [];
     checkout: any;
     
-    deliveryCost: number | null = 600;
-    deliveryAddress: string = '';
-    deliveryFIO: string = '';
-    deliveryPhone: string = '';
-    deliveryEmail: string = '';
+    // deliveryCost: number | null = 600;
+    // deliveryAddress: string = '';
+    // deliveryFIO: string = '';
+    // deliveryPhone: string = '';
+    // deliveryEmail: string = '';
     
     constructor(
         private _location: Location,
@@ -46,23 +46,51 @@ export class ShopBasketPageComponent implements OnInit, AfterViewInit {
         }
     }
     
-    ngAfterViewInit() {
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     // @ts-ignore
-        //     new window.CDEKWidget({
-        //         from: 'Новосибирск',
-        //         root: 'cdek-map',
-        //         apiKey: '34968cb7-371b-4d43-8f99-f3161156c5aa',
-        //         servicePath: 'https://www.dissonanspokoleniy.com/service.php',
-        //         defaultLocation: 'Новосибирск'
-        //     })
-        // });
+    inputHandler(event: any, key: string) {
+        localStorage.setItem(key, event.target.value);
     }
     
-    validateFormData(): boolean {
-        if (this.deliveryCost === null) return true;
-        return false;
+    ngAfterViewInit() {
+        // @ts-ignore
+        document.getElementById('delivery-fio')!.value = localStorage.getItem('delivery_fio')!;
+        // @ts-ignore
+        document.getElementById('delivery-email')!.value = localStorage.getItem('delivery_email')!;
+        // @ts-ignore
+        document.getElementById('delivery-phone')!.value = localStorage.getItem('delivery_phone')!;
+        // @ts-ignore
+        document.getElementById('delivery-comment')!.value = localStorage.getItem('delivery_comment')!;
+        
+        this.initMap();
     }
+    
+    async initMap() {
+        // @ts-ignore
+        window.widget = new window.CDEKWidget({
+            apiKey: '34968cb7-371b-4d43-8f99-f3161156c5aa',
+            root: 'cdek-map',
+            servicePath: 'https://www.dissonanspokoleniy.com/service.php',
+            defaultLocation: 'Moscow',
+            from: 'Ulitsa Dmitriya Donskogo 11/1, Brest, Brest Region 224012, Belarus',
+            goods: [
+                { length: 40, width: 40, height: 3, weight: 400 },
+            ],
+            onChoose: function (_type: any, tariff: any, address: any) {
+                console.log(_type, tariff, address);
+                localStorage.setItem('delivery_type', (_type));
+                localStorage.setItem('delivery_tariff', JSON.stringify(tariff));
+                localStorage.setItem('delivery_address', JSON.stringify(address));
+                
+                document.getElementById('address-container')!.innerHTML = '<br>Заказ с доставкой в: ' + address.name + '<br>Локальный адрес доставки: ' + address.address + '<br>Примерные сроки доставки (дней): ' + tariff.period_max;
+                
+                this.close();
+            },
+        });
+    }
+    
+    // validateFormData(): boolean {
+    // if (this.deliveryCost === null) return true;
+    // return false;
+    // }
     
     remove(index: number, size: string) {
         this.counts[index][size]--;
@@ -79,9 +107,9 @@ export class ShopBasketPageComponent implements OnInit, AfterViewInit {
     }
     
     getDeliveryPrice() {
-        this.paymentService.getDeliveryPrice(this.deliveryAddress)
-            .then(resp => console.log(resp))
-            .catch(error => console.log(error));
+        // this.paymentService.getDeliveryPrice(this.deliveryAddress)
+        //     .then(resp => console.log(resp))
+        //     .catch(error => console.log(error));
     }
     
     getFinalPrice() {
@@ -89,7 +117,7 @@ export class ShopBasketPageComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < this.service.products.length; i++)
             for (const size of this.sizes)
                 result += this.counts[i][size] * this.service.products[i].price;
-        return result + this.deliveryCost!;
+        return result;
     }
     
     open() {

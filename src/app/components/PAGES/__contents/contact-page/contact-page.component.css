@@ -8,7 +8,7 @@
   align-content: center;
 
   @media screen and (max-width: 1089px) {
-    height: calc(100vh - 300px);
+    height: calc(100vh - 400px);
   }
 }
 
